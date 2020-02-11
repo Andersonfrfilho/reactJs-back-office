@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  Container,
-  AreaForm,
-  AreaLogo,
-  AreaInputIcon,
-  AreaInput,
-  Input,
-  AreaIcon,
-  IconUser,
-  SubmitButton,
-  List,
-} from './styles';
+import { Container, AreaForm, AreaLogo, AreaInputs } from './styles';
 import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
+import InputIcon from '../../components/InputIcon';
 
 export default function Login() {
   const { loading } = useSelector(state => state.common);
@@ -41,14 +31,9 @@ export default function Login() {
         <AreaLogo>
           <Logo />
         </AreaLogo>
-        <AreaInputIcon>
-          <AreaInput>
-            <Input />
-          </AreaInput>
-          <AreaIcon>
-            <IconUser />
-          </AreaIcon>
-        </AreaInputIcon>
+        <AreaInputs>
+          <InputIcon />
+        </AreaInputs>
       </AreaForm>
     </Container>
   );
