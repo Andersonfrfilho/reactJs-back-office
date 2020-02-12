@@ -12,12 +12,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const AreaLogo = styled.div`
-  flex: 1;
-`;
-export const AreaInputs = styled.div`
-  flex: 1;
-`;
 export const AreaForm = styled.form`
   max-width: 700px;
   background-color: ${() => colors.white};
@@ -29,6 +23,15 @@ export const AreaForm = styled.form`
   border-radius: 4px;
 `;
 
+export const AreaLogo = styled.div`
+  flex: 1;
+`;
+export const AreaInputs = styled.div`
+  flex: 1;
+`;
+export const AreaButton = styled.div`
+  flex: 1;
+`;
 // export const SubmitButton = styled.button.attrs(props => ({
 //  type: 'submit',
 //  disabled: props.loading,
