@@ -32,6 +32,22 @@ export const AreaInputs = styled.div`
 export const AreaButton = styled.div`
   flex: 1;
 `;
+export const AreaRegisterForgotedPassword = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+  div {
+    display: flex;
+    flex: 1;
+    justify-content: ${props => (props.position ? 'flex-end' : 'flex-end')};
+    flex-direction: row;
+  }
+  a {
+    font-size: 12px;
+  }
+`;
+
 // export const SubmitButton = styled.button.attrs(props => ({
 //  type: 'submit',
 //  disabled: props.loading,

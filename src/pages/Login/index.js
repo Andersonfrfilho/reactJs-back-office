@@ -7,6 +7,7 @@ import {
   AreaLogo,
   AreaInputs,
   AreaButton,
+  AreaRegisterForgotedPassword,
 } from './styles';
 import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
@@ -45,6 +46,14 @@ export default function Login() {
         <AreaButton>
           <Button />
         </AreaButton>
+        <AreaRegisterForgotedPassword>
+          <div position>
+            <a href="google.com">registre-se</a>
+          </div>
+          <div style={{ justifyContent: 'flexEnd' }}>
+            <a href="google.com">esqueceu senha</a>
+          </div>
+        </AreaRegisterForgotedPassword>
       </AreaForm>
     </Container>
   );
