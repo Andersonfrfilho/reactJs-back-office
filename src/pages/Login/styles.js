@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 import { FaUserAlt } from 'react-icons/fa';
-import { colors } from '../../styles';
+import { colors, metrics } from '../../styles';
 
 export const Container = styled.div`
   margin: 0;
@@ -37,17 +37,18 @@ export const AreaRegisterForgotedPassword = styled.div`
   flex: 1;
   flex-direction: row;
   justify-content: space-around;
-  div {
-    display: flex;
-    flex: 1;
-    justify-content: ${props => (props.position ? 'flex-end' : 'flex-end')};
-    flex-direction: row;
-  }
-  a {
-    font-size: 12px;
-  }
 `;
-
+export const AreaLink = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: ${({ position }) => (position ? 'flex-start' : 'flex-end')};
+  flex-direction: row;
+  margin-top: 20px;
+`;
+export const Link = styled.a`
+  color: ${() => colors.regular};
+  font-size: ${() => metrics.fontSize - 2}px;
+`;
 // export const SubmitButton = styled.button.attrs(props => ({
 //  type: 'submit',
 //  disabled: props.loading,

@@ -1,22 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MdShoppingBasket } from 'react-icons/md';
-import { Container, Cart } from './styles';
+import {
+  AreaHeader,
+  AreaItems,
+  DrawerButton,
+  DrawerIcon,
+  DrawerOff,
+} from './styles';
 import logo from '../../assets/images/logo.svg';
 
 export default function Header() {
   return (
-    <Container>
-      <Link to="/">
-        <img src={logo} alt="logo GITHUB" width="140" />
-      </Link>
-      <Cart to="/cart">
-        <div>
-          <strong>Meu carrinho</strong>
-          <span>3 itens</span>
-        </div>
-        <MdShoppingBasket size={36} color="#f7f7f7" />
-      </Cart>
-    </Container>
+    <AreaHeader>
+      <AreaItems color="#45caff" positionLine="flex-start">
+        <DrawerButton>
+          <DrawerIcon />
+        </DrawerButton>
+      </AreaItems>
+      <AreaItems color="#ccaaff" positionLine="center">
+        <p>Logo</p>
+      </AreaItems>
+      <AreaItems color="#eeddcc" positionLine="flex-end">
+        <DrawerButton>
+          <DrawerOff />
+        </DrawerButton>
+      </AreaItems>
+    </AreaHeader>
   );
 }

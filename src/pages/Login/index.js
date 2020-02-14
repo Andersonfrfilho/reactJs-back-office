@@ -8,6 +8,8 @@ import {
   AreaInputs,
   AreaButton,
   AreaRegisterForgotedPassword,
+  AreaLink,
+  Link,
 } from './styles';
 import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
@@ -35,7 +37,7 @@ export default function Login() {
   }
   return (
     <Container>
-      <AreaForm>
+      <AreaForm onSubmit={e => handleSubmit(e)}>
         <AreaLogo>
           <Logo />
         </AreaLogo>
@@ -47,12 +49,12 @@ export default function Login() {
           <Button />
         </AreaButton>
         <AreaRegisterForgotedPassword>
-          <div position>
-            <a href="google.com">registre-se</a>
-          </div>
-          <div style={{ justifyContent: 'flexEnd' }}>
-            <a href="google.com">esqueceu senha</a>
-          </div>
+          <AreaLink position>
+            <Link href="google.com">esqueceu a senha</Link>
+          </AreaLink>
+          <AreaLink position={false}>
+            <Link href="google.com">registre-se</Link>
+          </AreaLink>
         </AreaRegisterForgotedPassword>
       </AreaForm>
     </Container>

@@ -1,30 +1,52 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FaBars, FaPowerOff } from 'react-icons/fa';
+import { colors, metrics } from '../../styles';
 
-export const Container = styled.header`
+export const AreaHeader = styled.header`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 50px 0px;
+  height: 48px;
+  width: 100%;
+  background-color: #4567cc;
 `;
-export const Cart = styled(Link)`
+export const AreaItems = styled.div`
   display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: row;
+  justify-content: ${({ positionLine }) => positionLine};
   align-items: center;
-  text-decoration: none;
-  transition: opacity 0.2s;
+  background-color: ${({ color }) => color};
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+`;
+export const DrawerButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  text-transform: uppercase;
+  background-color: white;
+  color: ${() => colors.dark};
+  border: 2px solid ${() => colors.lightsmaller};
+  border-radius: 40px;
+  /* transition: transform 300ms ease-in-out; */
+  transition-duration: 0.4s;
+
   &:hover {
-    opacity: 0.7;
+    /* transform: translate(200px, 150px) rotate(20deg); */
+    background-color: ${() => colors.lightsmaller};
   }
-  div {
-    text-align: right;
-    margin-right: 10px;
-    strong {
-      display: block;
-      color: #fff;
-    }
-    span {
-      font-size: 12px;
-      color: #999;
-    }
-  }
+`;
+export const DrawerIcon = styled(FaBars)`
+  font-size: ${() => metrics.fontSize + 8}px;
+`;
+export const DrawerOff = styled(FaPowerOff)`
+  font-size: ${() => metrics.fontSize + 8}px;
 `;
