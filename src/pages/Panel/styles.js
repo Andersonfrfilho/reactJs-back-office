@@ -21,10 +21,11 @@ export const AreaDrawerPanel = styled.div`
 `;
 export const AreaDrawer = styled.div`
   display: flex;
-  flex: 0.4;
+  flex: ${({ open }) => (open ? 1.5 : 0.4)};
   flex-direction: column;
   background-color: #45ccaa;
   min-width: 65px;
+  transition-duration: 0.7s;
 `;
 export const AreaContent = styled.div`
   display: flex;

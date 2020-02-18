@@ -37,11 +37,14 @@ export const DrawerButton = styled.button`
   border: 2px solid ${() => colors.lightsmaller};
   border-radius: 40px;
   /* transition: transform 300ms ease-in-out; */
-  transition-duration: 0.4s;
-
+  transition-duration: 0.6s;
+  box-shadow: 1px 3px 1px ${() => colors.boxShadownTransparend};
   &:hover {
     /* transform: translate(200px, 150px) rotate(20deg); */
     background-color: ${() => colors.lightsmaller};
+  }
+  &:active {
+    background-color: ${() => colors.boxShadownTransparend};
   }
 `;
 export const DrawerIcon = styled(FaBars)`

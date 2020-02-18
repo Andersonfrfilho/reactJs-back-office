@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   AreaHeader,
   AreaItems,
@@ -8,11 +9,11 @@ import {
 } from './styles';
 import logo from '../../assets/images/logo.svg';
 
-export default function Header() {
+export default function Header({ functionOnClick }) {
   return (
     <AreaHeader>
       <AreaItems color="#45caff" positionLine="flex-start">
-        <DrawerButton>
+        <DrawerButton onClick={() => functionOnClick()}>
           <DrawerIcon />
         </DrawerButton>
       </AreaItems>
@@ -27,3 +28,9 @@ export default function Header() {
     </AreaHeader>
   );
 }
+Header.propTypes = {
+  functionOnClick: PropTypes.func,
+};
+Header.defaultProps = {
+  functionOnClick: () => {},
+};
