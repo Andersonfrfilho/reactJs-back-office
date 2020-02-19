@@ -11,11 +11,13 @@ import {
   Svg,
   Image,
   AreaBody,
+  AreaOptions,
   AreaOption,
   AreaIcon,
   Icon,
   AreaTitle,
   Title,
+  SubOption,
 } from './styles';
 import logo from '../../assets/images/logo.svg';
 
@@ -37,16 +39,33 @@ export default function Drawer({ openDrawer, arrayOptions }) {
       </AreaHeader>
       <AreaBody>
         {arrayOptions.map(element => (
-          <AreaOption>
-            <AreaIcon>
-              <Icon />
-            </AreaIcon>
-            {openDrawer ? (
-              <AreaTitle>
-                <Title>aksldjfhalksjdf</Title>
-              </AreaTitle>
-            ) : null}
-          </AreaOption>
+          <AreaOptions>
+            {element.subOption.length > 0 ? (
+              element.subOption.map(element => (
+                <AreaOption>
+                  <AreaIcon>
+                    <Icon />
+                  </AreaIcon>
+                  {openDrawer ? (
+                    <AreaTitle>
+                      <Title>aksldjfhalksjdf</Title>
+                    </AreaTitle>
+                  ) : null}
+                </AreaOption>
+              ))
+            ) : (
+              <AreaOption>
+                <AreaIcon>
+                  <Icon />
+                </AreaIcon>
+                {openDrawer ? (
+                  <AreaTitle>
+                    <Title>aksldjfhalksjdf</Title>
+                  </AreaTitle>
+                ) : null}
+              </AreaOption>
+            )}
+          </AreaOptions>
         ))}
       </AreaBody>
     </AreaDrawer>
@@ -58,5 +77,9 @@ Drawer.propTypes = {
 };
 Drawer.defaultProps = {
   openDrawer: false,
-  arrayOptions: ['Menu', 'login', 'sei la'],
+  arrayOptions: [
+    { option: '1', subOption: [{ options: '1' }, { options: '2' }] },
+    { option: '2', subOption: [] },
+    { option: '3', subOption: [] },
+  ],
 };
