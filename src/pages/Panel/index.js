@@ -16,9 +16,7 @@ export default function Panel(props) {
         <AreaDrawer open={openDrawer}>
           <Drawer openDrawer={openDrawer} />
         </AreaDrawer>
-        <AreaContent>
-          <p>akjsdfhlkajsdf</p>
-        </AreaContent>
+        <AreaContent />
       </AreaDrawerPanel>
     </AreaPanel>
   );

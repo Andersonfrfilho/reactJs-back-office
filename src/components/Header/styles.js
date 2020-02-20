@@ -8,7 +8,7 @@ export const AreaHeader = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 48px;
+  height: 58px;
   width: 100%;
   background-color: #4567cc;
 `;
@@ -52,4 +52,15 @@ export const DrawerIcon = styled(FaBars)`
 `;
 export const DrawerOff = styled(FaPowerOff)`
   font-size: ${() => metrics.fontSize + 8}px;
+`;
+export const AreaSvg = styled.svg`
+  flex: 1;
+  background-color: #ccffaa;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+`;
+export const Image = styled.image`
+  height: 100%;
+  width: 100%;
 `;

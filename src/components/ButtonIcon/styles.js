@@ -27,9 +27,18 @@ export const Button = styled.button`
   &:hover {
     /* transform: translate(200px, 150px) rotate(20deg); */
     background-color: ${() => colors.lightsmaller};
+    transition-duration: 0.4s;
+  }
+  &:active {
+    transition-duration: 0.4s;
+    color: ${() => colors.light};
+    background-color: ${() => colors.darkTransparent};
   }
 `;
 export const IconUser = styled(FaUserAlt)`
   color: ${() => colors.dark};
   margin-left: 20px;
+  &:active {
+    color: ${() => colors.light};
+  }
 `;
