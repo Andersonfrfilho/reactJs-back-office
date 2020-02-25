@@ -15,7 +15,18 @@ export default {
   danger: '#E37A7A',
 
   tranparent: 'transparent',
+  darknesTransparent: 'rgba(0,0,0,0.3)',
   darkTransparent: 'rgba(0,0,0,0.6)',
   boxShadownTransparend: 'rgba(0, 0, 0, 0.1)',
   whiteTransparent: 'rgba(255,255,255,0.3)',
+
+  pickerOne: '#07316B',
+  pickerTwo: '#14427A',
+  pickerTree: '#25558A',
+  pickerFour: '#376C9F',
+
+  pickerFive: '#0181AD',
+  pickerSix: '#029BCB',
+  pickerSeven: '#08B8EA',
+  pickerEigth: '#4DDAFD',
 };

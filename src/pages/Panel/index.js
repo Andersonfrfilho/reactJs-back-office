@@ -9,9 +9,15 @@ import Drawer from '../../components/Drawer';
 
 export default function Panel(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openUser, setOpenUser] = useState(false);
   return (
     <AreaPanel>
-      <Header functionOnClick={() => setOpenDrawer(!openDrawer)} />
+      <Header
+        functionOnClickDrawer={() => setOpenDrawer(!openDrawer)}
+        openDrawer={openDrawer}
+        functionOnClickUser={() => setOpenUser(!openUser)}
+        openUser={openUser}
+      />
       <AreaDrawerPanel>
         <AreaDrawer open={openDrawer}>
           <Drawer openDrawer={openDrawer} />

@@ -15,18 +15,17 @@ export const AreaDrawerPanel = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
+  background-color: #124567;
 `;
 export const AreaDrawer = styled.div`
   display: flex;
   flex: ${({ open }) => (open ? 1.5 : 0.4)};
   min-width: ${({ open }) => (open ? 200 : 70)}px;
   flex-direction: column;
-  background-color: #45ccaa;
   transition-duration: 0.7s;
 `;
 
 export const AreaContent = styled.div`
   display: flex;
   flex: 9;
-  background-color: #aaff11;
 `;

@@ -14,6 +14,9 @@ export default createGlobalStyle`
     height:100%;
     display:flex;
     flex-direction:column;
+    @media (min-width: 400px) { min-width: 400px;font-size: 14px }
+    @media (min-width: 800px) { min-width: 800px;font-size: 18px }
+    @media (min-width: 1200px) { min-width: 1200px;font-size: 20px }
   }
   body{
     background:${() => colors.white};

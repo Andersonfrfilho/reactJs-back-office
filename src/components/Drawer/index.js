@@ -9,9 +9,23 @@ import {
   AreaInfo,
   Title,
   Text,
+  AreaSearch,
+  IconSeach,
+  AreaInputSearch,
+  InputSearch,
+  AreaInputIconSearch,
   AreaBody,
+  AreaOptionsList,
   AreaOptions,
+  AreaOption,
+  AreaIconOptions,
+  IconFont,
+  AreaTitle,
+  AreaIconDown,
+  AreaIconDownUp,
+  IconUp,
   AreaSubOption,
+  IconDown,
 } from './styles';
 import logo from '../../assets/images/logo.svg';
 
@@ -28,14 +42,46 @@ export default function Drawer({ openDrawer, arrayOptions }) {
         </AreaPhoto>
         <AreaInfo open={openDrawer}>
           <Title>asd</Title>
-          <Text>asdfasdf</Text>
+          <Text open={openDrawer}>asdfasdf</Text>
         </AreaInfo>
       </AreaHeader>
+      <AreaSearch>
+        <AreaInputIconSearch>
+          <IconSeach />
+        </AreaInputIconSearch>
+        <AreaInputSearch>
+          <InputSearch open={openDrawer} />
+        </AreaInputSearch>
+      </AreaSearch>
       <AreaBody>
-        <AreaOptions>
-          <Title>aksdjfhasdf</Title>
-          <AreaSubOption />
-        </AreaOptions>
+        <AreaOptionsList>
+          <AreaOptions>
+            <AreaOption>
+              <AreaIconOptions>
+                <IconFont />
+              </AreaIconOptions>
+              <AreaTitle>
+                <Title>asd</Title>
+              </AreaTitle>
+            </AreaOption>
+            <AreaIconDownUp>
+              <IconDown />
+            </AreaIconDownUp>
+          </AreaOptions>
+          <AreaOptions>
+            <AreaOption>
+              <AreaIconOptions>
+                <IconFont />
+              </AreaIconOptions>
+              <AreaTitle>
+                <Title>asd</Title>
+              </AreaTitle>
+            </AreaOption>
+            <AreaIconDownUp>
+              <IconDown />
+            </AreaIconDownUp>
+          </AreaOptions>
+        </AreaOptionsList>
       </AreaBody>
     </AreaDrawer>
   );
