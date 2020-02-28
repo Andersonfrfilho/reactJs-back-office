@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -29,7 +29,12 @@ import {
 } from './styles';
 import logo from '../../assets/images/logo.svg';
 
-export default function Drawer({ openDrawer, arrayOptions }) {
+export default function Drawer({
+  openDrawer,
+  options,
+  functionOnClickOpenSuboption,
+}) {
+  console.tron.log(options[0].suboptions.length);
   return (
     <AreaDrawer>
       <AreaHeader>
@@ -55,32 +60,44 @@ export default function Drawer({ openDrawer, arrayOptions }) {
       </AreaSearch>
       <AreaBody>
         <AreaOptionsList>
-          <AreaOptions>
-            <AreaOption>
-              <AreaIconOptions>
-                <IconFont />
-              </AreaIconOptions>
-              <AreaTitle>
-                <Title>asd</Title>
-              </AreaTitle>
-            </AreaOption>
-            <AreaIconDownUp>
-              <IconDown />
-            </AreaIconDownUp>
-          </AreaOptions>
-          <AreaOptions>
-            <AreaOption>
-              <AreaIconOptions>
-                <IconFont />
-              </AreaIconOptions>
-              <AreaTitle>
-                <Title>asd</Title>
-              </AreaTitle>
-            </AreaOption>
-            <AreaIconDownUp>
-              <IconDown />
-            </AreaIconDownUp>
-          </AreaOptions>
+          {options.map(option => (
+            <>
+              <AreaOptions>
+                <AreaOption>
+                  <AreaIconOptions>
+                    <IconFont />
+                  </AreaIconOptions>
+                  <AreaTitle>
+                    <Title>asd</Title>
+                  </AreaTitle>
+                </AreaOption>
+                {option.suboptions.length > 0 ? (
+                  <AreaIconDownUp
+                    onClick={() => functionOnClickOpenSuboption(option.id)}
+                  >
+                    {option.open ? <IconUp /> : <IconDown />}
+                  </AreaIconDownUp>
+                ) : null}
+              </AreaOptions>
+              {/* option.open
+                ? option.suboption.map(suboptionParam => (
+                    <AreaOptions>
+                      <AreaOption>
+                        <AreaIconOptions>
+                          <IconFont />
+                        </AreaIconOptions>
+                        <AreaTitle>
+                          <Title>asd</Title>
+                        </AreaTitle>
+                      </AreaOption>
+                      <AreaIconDownUp>
+                        <IconDown />
+                      </AreaIconDownUp>
+                    </AreaOptions>
+                  ))
+                : null */}
+            </>
+          ))}
         </AreaOptionsList>
       </AreaBody>
     </AreaDrawer>
@@ -88,13 +105,18 @@ export default function Drawer({ openDrawer, arrayOptions }) {
 }
 Drawer.propTypes = {
   openDrawer: PropTypes.bool,
-  arrayOptions: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.string),
 };
 Drawer.defaultProps = {
   openDrawer: false,
-  arrayOptions: [
-    { option: '1', subOption: [{ options: '1' }, { options: '2' }] },
-    { option: '2', subOption: [] },
-    { option: '3', subOption: [] },
+  options: [
+    {
+      option: '1',
+      name: 'option 1',
+      open: false,
+      subOption: [{ options: '1' }, { options: '2' }],
+    },
+    { option: '2', name: 'option 1', open: false, subOption: [] },
+    { option: '3', name: 'option 1', open: false, subOption: [] },
   ],
 };

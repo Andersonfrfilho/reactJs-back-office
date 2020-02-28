@@ -10,6 +10,29 @@ import Drawer from '../../components/Drawer';
 export default function Panel(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
+  const [options, setOptions] = useState([
+    {
+      id: '1',
+      name: 'option 1',
+      open: false,
+      suboptions: [{ id: '1' }, { id: '2' }],
+    },
+    { id: '2', name: 'option 1', open: false, suboptions: [] },
+    { id: '3', name: 'option 1', open: false, suboptions: [] },
+  ]);
+  function functionOpenSuboption(idParam, optionsParam) {
+    const newOptions = optionsParam.map(optionParam => {
+      if (optionParam.id === idParam) {
+        return {
+          ...optionParam,
+          open: !optionParam.open,
+        };
+      }
+      return { ...optionParam, open: false };
+    });
+    console.tron.log(newOptions);
+    setOptions(newOptions);
+  }
   return (
     <AreaPanel>
       <Header
@@ -20,7 +43,13 @@ export default function Panel(props) {
       />
       <AreaDrawerPanel>
         <AreaDrawer open={openDrawer}>
-          <Drawer openDrawer={openDrawer} />
+          <Drawer
+            openDrawer={openDrawer}
+            options={options}
+            functionOnClickOpenSuboption={id =>
+              functionOpenSuboption(id, options)
+            }
+          />
         </AreaDrawer>
         <AreaContent />
       </AreaDrawerPanel>

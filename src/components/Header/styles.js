@@ -91,7 +91,7 @@ export const AreaUserButon = styled.div`
   display: flex;
   visibility: ${({ exist }) => (exist ? 'visible' : 'hidden')};
   height: 55px;
-  background-color: ${colors.pickerFive};
+  background-color: ${colors.pickerTwo};
   opacity: ${({ exist }) => (exist ? 1 : 0)};
   padding-left: 3px;
   padding-right: 3px;
@@ -151,7 +151,7 @@ export const AreaTitle = styled.div`
   }
 `;
 export const Title = styled.p`
-  color: ${() => colors.white};
+  color: ${() => colors.pickerEigth};
 `;
 export const AreaIcon = styled.div`
   display: flex;
@@ -173,24 +173,24 @@ export const AreaIcon = styled.div`
   }
 `;
 export const IconDown = styled(FaAngleDown)`
-  color: ${colors.white};
+  color: ${colors.pickerEigth};
   transition-duration: 0.7s;
 `;
 export const IconUp = styled(FaAngleUp)`
-  color: ${colors.white};
+  color: ${colors.pickerEigth};
   transition-duration: 0.7s;
 `;
 export const IconBack = styled(FaArrowLeft)`
-  color: ${colors.white};
+  color: ${colors.pickerEigth};
   transition-duration: 0.7s;
 `;
 export const DrawerIcon = styled(FaBars)`
-  color: ${colors.white};
+  color: ${colors.pickerEigth};
   transition-duration: 0.7s;
   font-size: ${() => metrics.fontSize + 8}px;
 `;
 export const DrawerOff = styled(FaPowerOff)`
-  color: ${colors.white};
+  color: ${colors.pickerEigth};
   transition-duration: 0.7s;
   font-size: ${() => metrics.fontSize + 8}px;
 `;
