@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AreaPanel, AreaDrawerPanel, AreaDrawer, AreaContent } from './styles';
 import * as HomeActions from '../../store/modules/home/actions';
 import Header from '../../components/Header';
 import Drawer from '../../components/Drawer';
+import Content1 from '../Content1';
+import Content2 from '../Content2';
 
-export default function Panel(props) {
+export default function Panel({ match: { path } }) {
+  console.tron.log(path);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const [options, setOptions] = useState([
@@ -15,7 +18,10 @@ export default function Panel(props) {
       id: '1',
       name: 'option 1',
       open: false,
-      suboptions: [{ id: '1' }, { id: '2' }],
+      suboptions: [
+        { id: '1', name: 'suboption_1' },
+        { id: '2', name: 'suboption_2' },
+      ],
     },
     { id: '2', name: 'option 1', open: false, suboptions: [] },
     { id: '3', name: 'option 1', open: false, suboptions: [] },
@@ -51,7 +57,12 @@ export default function Panel(props) {
             }
           />
         </AreaDrawer>
-        <AreaContent />
+        <AreaContent>
+          <Switch>
+            <Route path={`${path}`} exact component={Content1} />
+            <Route path={`${path}/comments`} component={Content2} />
+          </Switch>
+        </AreaContent>
       </AreaDrawerPanel>
     </AreaPanel>
   );

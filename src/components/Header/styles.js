@@ -102,9 +102,16 @@ export const AreaUserButon = styled.div`
   transition-timing-function: ease-out;
   &:hover {
     cursor: pointer;
-    background-color: ${colors.pickerSix};
+    background-color: ${colors.darkTransparent};
     transition-property: visibility, opacity, background-color;
     transition-duration: 0.7s;
+    p {
+      /* color: ${colors.pickerTwo}; */
+      transition-duration: 0.7s;
+    }
+    svg {
+      /* color: ${colors.pickerTwo}; */
+    }
   }
 `;
 export const AreaPhoto = styled.div`

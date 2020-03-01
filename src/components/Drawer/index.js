@@ -60,44 +60,45 @@ export default function Drawer({
       </AreaSearch>
       <AreaBody>
         <AreaOptionsList>
-          {options.map(option => (
-            <>
-              <AreaOptions>
-                <AreaOption>
-                  <AreaIconOptions>
-                    <IconFont />
-                  </AreaIconOptions>
-                  <AreaTitle>
-                    <Title>asd</Title>
-                  </AreaTitle>
-                </AreaOption>
-                {option.suboptions.length > 0 ? (
-                  <AreaIconDownUp
-                    onClick={() => functionOnClickOpenSuboption(option.id)}
-                  >
-                    {option.open ? <IconUp /> : <IconDown />}
-                  </AreaIconDownUp>
-                ) : null}
-              </AreaOptions>
-              {/* option.open
-                ? option.suboption.map(suboptionParam => (
-                    <AreaOptions>
-                      <AreaOption>
-                        <AreaIconOptions>
-                          <IconFont />
-                        </AreaIconOptions>
-                        <AreaTitle>
-                          <Title>asd</Title>
-                        </AreaTitle>
-                      </AreaOption>
-                      <AreaIconDownUp>
-                        <IconDown />
-                      </AreaIconDownUp>
-                    </AreaOptions>
-                  ))
-                : null */}
-            </>
-          ))}
+          {options.map(option => {
+            console.tron.log(option);
+            return (
+              <>
+                <AreaOptions>
+                  <AreaOption>
+                    <AreaIconOptions>
+                      <IconFont />
+                    </AreaIconOptions>
+                    <AreaTitle>
+                      <Title>asd</Title>
+                    </AreaTitle>
+                  </AreaOption>
+                  {option.suboptions.length > 0 ? (
+                    <AreaIconDownUp
+                      onClick={() => functionOnClickOpenSuboption(option.id)}
+                    >
+                      {option.open ? <IconUp /> : <IconDown />}
+                    </AreaIconDownUp>
+                  ) : null}
+                </AreaOptions>
+                {option.open
+                  ? option.suboptions.map(suboption => (
+                      <AreaOptions>
+                        <AreaOption>
+                          <AreaIconOptions />
+                          <AreaIconDownUp>
+                            <IconUp />
+                          </AreaIconDownUp>
+                          <AreaTitle>
+                            <Title>{suboption.name}</Title>
+                          </AreaTitle>
+                        </AreaOption>
+                      </AreaOptions>
+                    ))
+                  : null}
+              </>
+            );
+          })}
         </AreaOptionsList>
       </AreaBody>
     </AreaDrawer>

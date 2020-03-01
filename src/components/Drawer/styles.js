@@ -121,6 +121,9 @@ export const AreaIconDownUp = styled.div`
   align-items: center;
   width: 30px;
   background-color: #cc1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const IconSeach = styled(FaSearch)``;
 export const IconFont = styled(FaFonticons)``;
