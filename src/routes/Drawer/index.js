@@ -73,6 +73,7 @@ export default function Panel({ match: { path } }) {
               functionOnClickOpenSuboption={id =>
                 functionOpenSuboption(id, options)
               }
+              path={path}
             />
           </AreaDrawer>
 

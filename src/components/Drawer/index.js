@@ -33,6 +33,7 @@ export default function Drawer({
   openDrawer,
   options,
   functionOnClickOpenSuboption,
+  path,
 }) {
   console.tron.log(options[0].suboptions.length);
   return (
@@ -65,14 +66,16 @@ export default function Drawer({
             return (
               <>
                 <AreaOptions>
-                  <AreaOption>
-                    <AreaIconOptions>
-                      <IconFont />
-                    </AreaIconOptions>
-                    <AreaTitle>
-                      <Title>asd</Title>
-                    </AreaTitle>
-                  </AreaOption>
+                  <Link to={`${path}/bubblegum`}>
+                    <AreaOption>
+                      <AreaIconOptions>
+                        <IconFont />
+                      </AreaIconOptions>
+                      <AreaTitle>
+                        <Title>asd</Title>
+                      </AreaTitle>
+                    </AreaOption>
+                  </Link>
                   {option.suboptions.length > 0 ? (
                     <AreaIconDownUp
                       onClick={() => functionOnClickOpenSuboption(option.id)}
