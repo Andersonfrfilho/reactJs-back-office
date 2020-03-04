@@ -45,6 +45,9 @@ export const DrawerButton = styled.button`
   /* transition: transform 300ms ease-in-out; */
   transition-duration: 0.7s;
   /* box-shadow: 1px 3px 1px ${() => colors.boxShadownTransparend}; */
+
+
+    box-shadow: 0 0 5px ${() => colors.darknesTransparent};
   &:hover {
     /* transform: translate(200px, 150px) rotate(20deg); */
     background-color: ${() => colors.darknesTransparent};
@@ -124,6 +127,7 @@ export const AreaPhoto = styled.div`
   border-radius: 29px;
   overflow: hidden;
   transition-duration: 0.7s;
+  background-color: ${colors.pickerOne};
   @media (min-width: 400px) {
     display: ${({ exist }) => (exist ? 'flex' : 'none')};
     flex: 1;
@@ -148,10 +152,10 @@ export const AreaTitle = styled.div`
   padding-right: 5px;
   transition-duration: 0.7s;
   @media (min-width: 400px) {
-    display: none;
+    display: ${({ exits }) => (exits ? 'flex' : 'none')};
   }
   @media (min-width: 800px) {
-    display: none;
+    display: ${({ exits }) => (exits ? 'flex' : 'none')};
   }
   @media (min-width: 1200px) {
     display: flex;

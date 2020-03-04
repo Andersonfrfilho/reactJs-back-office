@@ -20,11 +20,12 @@ import {
   AreaOption,
   AreaIconOptions,
   IconFont,
+  AreaUnderline,
+  Underline,
+  TitleOption,
   AreaTitle,
-  AreaIconDown,
   AreaIconDownUp,
   IconUp,
-  AreaSubOption,
   IconDown,
 } from './styles';
 import logo from '../../assets/images/logo.svg';
@@ -32,23 +33,23 @@ import logo from '../../assets/images/logo.svg';
 export default function Drawer({
   openDrawer,
   options,
+  name,
+  subname,
   functionOnClickOpenSuboption,
   path,
+  valueSearch,
+  functionOnChangeTextSearch,
+  palceholderSearch,
 }) {
-  console.tron.log(options[0].suboptions.length);
   return (
     <AreaDrawer>
       <AreaHeader>
         <AreaPhoto>
-          <Photo
-            src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
-    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
-        9TXL0Y4OHwAAAABJRU5ErkJggg=="
-          />
+          <Photo src={logo} />
         </AreaPhoto>
         <AreaInfo open={openDrawer}>
-          <Title>asd</Title>
-          <Text open={openDrawer}>asdfasdf</Text>
+          <Title>{name}</Title>
+          {subname ? <Text open={openDrawer}>{subname}</Text> : null}
         </AreaInfo>
       </AreaHeader>
       <AreaSearch>
@@ -56,49 +57,56 @@ export default function Drawer({
           <IconSeach />
         </AreaInputIconSearch>
         <AreaInputSearch>
-          <InputSearch open={openDrawer} />
+          <InputSearch
+            placeholder={palceholderSearch}
+            open={openDrawer}
+            value={valueSearch}
+            onChange={text => functionOnChangeTextSearch(text.target.value)}
+          />
         </AreaInputSearch>
       </AreaSearch>
       <AreaBody>
         <AreaOptionsList>
-          {options.map(option => {
-            console.tron.log(option);
+          {options.map((option, index) => {
             return (
               <>
                 <AreaOptions>
-                  <Link to={`${path}/bubblegum`}>
-                    <AreaOption>
-                      <AreaIconOptions>
-                        <IconFont />
-                      </AreaIconOptions>
-                      <AreaTitle>
-                        <Title>asd</Title>
-                      </AreaTitle>
-                    </AreaOption>
-                  </Link>
+                  <AreaOption to={`${path}${option.link}`}>
+                    <AreaIconOptions>
+                      <option.icon />
+                    </AreaIconOptions>
+                    <AreaTitle>
+                      <TitleOption>{option.name}</TitleOption>
+                    </AreaTitle>
+                  </AreaOption>
+
                   {option.suboptions.length > 0 ? (
                     <AreaIconDownUp
-                      onClick={() => functionOnClickOpenSuboption(option.id)}
+                      onClick={() => functionOnClickOpenSuboption(index)}
                     >
                       {option.open ? <IconUp /> : <IconDown />}
                     </AreaIconDownUp>
                   ) : null}
                 </AreaOptions>
+
                 {option.open
                   ? option.suboptions.map(suboption => (
                       <AreaOptions>
-                        <AreaOption>
+                        <AreaOption to={`${path}${suboption.link}`}>
                           <AreaIconOptions />
                           <AreaIconDownUp>
-                            <IconUp />
+                            <suboption.icon />
                           </AreaIconDownUp>
                           <AreaTitle>
-                            <Title>{suboption.name}</Title>
+                            <TitleOption>{option.name}</TitleOption>
                           </AreaTitle>
                         </AreaOption>
                       </AreaOptions>
                     ))
                   : null}
+                <AreaUnderline>
+                  <Underline />
+                </AreaUnderline>
               </>
             );
           })}
@@ -110,9 +118,21 @@ export default function Drawer({
 Drawer.propTypes = {
   openDrawer: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string,
+  subname: PropTypes.string,
+  valueSearch: PropTypes.string,
+  palceholderSearch: PropTypes.string,
+  functionOnChangeTextSearch: PropTypes.func,
+  functionOnClickOpenSuboption: PropTypes.func,
 };
 Drawer.defaultProps = {
   openDrawer: false,
+  name: 'Empresa',
+  subname: 'subname',
+  valueSearch: '',
+  palceholderSearch: 'placeholder search:',
+  functionOnClickOpenSuboption: () => {},
+  functionOnChangeTextSearch: () => {},
   options: [
     {
       option: '1',

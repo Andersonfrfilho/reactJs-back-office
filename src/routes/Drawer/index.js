@@ -2,60 +2,96 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { AreaPanel, AreaDrawerPanel, AreaDrawer, AreaContent } from './styles';
+import {
+  AreaPanel,
+  AreaDrawerPanel,
+  AreaDrawer,
+  AreaContent,
+  IconUserList,
+  IconRegisterUser,
+} from './styles';
 import * as HomeActions from '../../store/modules/home/actions';
 import Header from '../../components/Header';
 import Drawer from '../../components/Drawer';
-import Content1 from '../../pages/Content1';
-import Content2 from '../../pages/Content2';
+import UserList from '../../pages/UserList';
+import UserRegistration from '../../pages/UserRegister';
 
 export default function Panel({ match: { path } }) {
-  const routes = [
-    {
-      path: `${path}/`,
-      exact: true,
-      sidebar: () => <Content1 />,
-      main: () => <Content1 />,
-    },
-    {
-      path: `${path}/bubblegum`,
-      sidebar: () => <Content2 />,
-      main: () => <Content2 />,
-    },
-    {
-      path: `${path}/shoelaces`,
-      sidebar: () => <div>shoelaces!</div>,
-      main: () => <h2>Shoelaces</h2>,
-    },
-  ];
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
-  const [options, setOptions] = useState([
-    {
-      id: '1',
-      name: 'option 1',
-      open: false,
-      suboptions: [
-        { id: '1', name: 'suboption_1' },
-        { id: '2', name: 'suboption_2' },
-      ],
-    },
-    { id: '2', name: 'option 1', open: false, suboptions: [] },
-    { id: '3', name: 'option 1', open: false, suboptions: [] },
-  ]);
-  function functionOpenSuboption(idParam, optionsParam) {
-    const newOptions = optionsParam.map(optionParam => {
-      if (optionParam.id === idParam) {
-        return {
-          ...optionParam,
-          open: !optionParam.open,
-        };
+  const [drawer, setDrawer] = useState({
+    name: 'Empresa',
+    subname: '',
+    options: [
+      {
+        id: '1',
+        name: 'Lista de usuários',
+        open: false,
+        link: `/`,
+        icon: () => <IconUserList />,
+        route: {
+          path: `${path}/`,
+          exact: true,
+          main: () => <UserList />,
+        },
+        // suboptions: [],
+        suboptions: [
+          {
+            id: '1',
+            name: 'Lista de usuários',
+            open: false,
+            link: `/`,
+            icon: () => <IconUserList />,
+            route: {
+              path: `${path}/`,
+              exact: true,
+              main: () => <UserList />,
+            },
+          },
+        ],
+      },
+      {
+        id: '2',
+        name: 'Cadastro de usuários',
+        open: false,
+        link: `/registerUser`,
+        icon: () => <IconRegisterUser />,
+        route: {
+          path: `${path}/registerUser`,
+          exact: false,
+          main: () => <UserRegistration />,
+        },
+        suboptions: [],
+      },
+    ],
+  });
+  const [drawerFind, setDrawerFind] = useState(drawer);
+  const [searchText, setSearchText] = useState('');
+  function functionOpenSuboption(indexParam, drawerParam) {
+    const newOptions = drawerParam.options.map(
+      (optionParam, indexOptionsParam) => {
+        if (indexParam === indexOptionsParam) {
+          return {
+            ...optionParam,
+            open: !optionParam.open,
+          };
+        }
+        return { ...optionParam, open: false };
       }
-      return { ...optionParam, open: false };
-    });
-    console.tron.log(newOptions);
-    setOptions(newOptions);
+    );
+    setDrawerFind({ ...drawerParam, options: newOptions });
   }
+
+  useEffect(() => {
+    const newOptions = drawer.options.filter(element =>
+      element.name.toLowerCase().includes(searchText)
+    );
+    const newDrawer = {
+      ...drawer,
+      options: newOptions,
+    };
+    setDrawerFind(newDrawer);
+  }, [searchText]);//eslint-disable-line
   return (
     <Router>
       <AreaPanel>
@@ -69,35 +105,31 @@ export default function Panel({ match: { path } }) {
           <AreaDrawer open={openDrawer}>
             <Drawer
               openDrawer={openDrawer}
-              options={options}
-              functionOnClickOpenSuboption={id =>
-                functionOpenSuboption(id, options)
+              name={drawer.name}
+              subname={drawer.subname}
+              options={drawerFind.options}
+              functionOnClickOpenSuboption={indexParam =>
+                functionOpenSuboption(indexParam, drawerFind)
               }
               path={path}
+              palceholderSearch="Digite a opção:"
+              valueSearch={searchText}
+              functionOnChangeTextSearch={text => setSearchText(text)}
             />
           </AreaDrawer>
 
           <AreaContent>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-              <li>
-                <Link to={`${path}/`}>Home</Link>
-              </li>
-              <li>
-                <Link to={`${path}/bubblegum`}>Bubblegum</Link>
-              </li>
-              <li>
-                <Link to={`${path}/shoelaces`}>Shoelaces</Link>
-              </li>
-            </ul>
             <Switch>
-              {routes.map((route, index) => (
-                <Route
-                  key={index.toString()}
-                  path={route.path}
-                  exact={route.exact}
-                  children={<route.sidebar />}
-                />
-              ))}
+              {drawer.options.map(({ route }, index) => {
+                return (
+                  <Route
+                    key={index.toString()}
+                    path={route.path}
+                    exact={route.exact}
+                    children={<route.main />}
+                  />
+                );
+              })}
             </Switch>
           </AreaContent>
         </AreaDrawerPanel>

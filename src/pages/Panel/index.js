@@ -10,7 +10,6 @@ import Content1 from '../Content1';
 import Content2 from '../Content2';
 
 export default function Panel({ match: { path } }) {
-  console.tron.log(path);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const [options, setOptions] = useState([
@@ -36,7 +35,6 @@ export default function Panel({ match: { path } }) {
       }
       return { ...optionParam, open: false };
     });
-    console.tron.log(newOptions);
     setOptions(newOptions);
   }
   return (

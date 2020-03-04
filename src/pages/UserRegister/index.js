@@ -16,7 +16,7 @@ import Logo from '../../components/Logo';
 import InputIcon from '../../components/InputIcon';
 import Button from '../../components/ButtonIcon';
 
-export default function Content1() {
+export default function UserRegistration() {
   return (
     <Container>
       <a>Tela1</a>

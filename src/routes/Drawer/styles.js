@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { FaRegListAlt } from 'react-icons/fa';
+import { IoIosPersonAdd, IoIosPeople } from 'react-icons/io';
 import { colors } from '../../styles';
 
 export const AreaPanel = styled.div`
@@ -28,4 +30,10 @@ export const AreaDrawer = styled.div`
 export const AreaContent = styled.div`
   display: flex;
   flex: 9;
+`;
+export const IconUserList = styled(IoIosPeople)`
+  color: ${colors.pickerEigth};
+`;
+export const IconRegisterUser = styled(IoIosPersonAdd)`
+  color: ${colors.pickerEigth};
 `;

@@ -36,7 +36,7 @@ export default function Header({
         <DrawerButton onClick={functionOnClickDrawer}>
           {openDrawer ? <IconBack /> : <DrawerIcon />}
         </DrawerButton>
-        <AreaTitle>
+        <AreaTitle exits>
           <Title>{titleDrawer}</Title>
         </AreaTitle>
       </AreaItems>

@@ -24,8 +24,6 @@ function* requestAddToUserRepository({ payload }) {
         },
       }
     );
-    console.tron.log('user');
-    console.tron.log(user);
     yield put(addToUser(user));
     yield put(addToRepository(repositories));
     yield put(successAction(''));
