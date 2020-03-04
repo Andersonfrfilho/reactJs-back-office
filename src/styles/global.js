@@ -24,7 +24,8 @@ export default createGlobalStyle`
   }
   body,input,button{
     color:${() => colors.darkness};
-    font:14px Roboto, sans-serif, Arial, Helvetica;
+    src: local('Roboto-Medium'), url(./fonts/Roboto-Medium.ttf) format('ttf');
+    font:14px Roboto-Medium, sans-serif, Arial, Helvetica;
   }
   #root {
     /*max-width:1020px;
