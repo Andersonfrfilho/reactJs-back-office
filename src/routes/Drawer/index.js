@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 import Drawer from '../../components/Drawer';
 import UserList from '../../pages/UserList';
 import UserRegistration from '../../pages/UserRegister';
+import DrawerContentHeader from '../../components/DrawerContentHeader';
 
 export default function Panel({ match: { path } }) {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -67,6 +68,7 @@ export default function Panel({ match: { path } }) {
   });
   const [drawerFind, setDrawerFind] = useState(drawer);
   const [searchText, setSearchText] = useState('');
+  const [namePage, setNamePage] = useState(drawer.options[0].name);
   function functionOpenSuboption(indexParam, drawerParam) {
     const newOptions = drawerParam.options.map(
       (optionParam, indexOptionsParam) => {
@@ -80,6 +82,9 @@ export default function Panel({ match: { path } }) {
       }
     );
     setDrawerFind({ ...drawerParam, options: newOptions });
+  }
+  function functionClickLink(nameParam) {
+    setNamePage(nameParam);
   }
 
   useEffect(() => {
@@ -115,10 +120,12 @@ export default function Panel({ match: { path } }) {
               palceholderSearch="Digite a opção:"
               valueSearch={searchText}
               functionOnChangeTextSearch={text => setSearchText(text)}
+              functionOnClickLink={name => functionClickLink(name)}
             />
           </AreaDrawer>
 
           <AreaContent>
+            <DrawerContentHeader name={namePage} />
             <Switch>
               {drawer.options.map(({ route }, index) => {
                 return (

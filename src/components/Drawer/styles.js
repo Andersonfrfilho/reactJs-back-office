@@ -62,14 +62,20 @@ export const AreaInputSearch = styled.div`
 export const InputSearch = styled.input`
   background-color: ${colors.white};
   border: none;
-  width: 95%;
+  width: 92%;
   height: 90%;
   padding-left: ${({ open }) => (open ? 5 : 0)}px;
   border-radius: 8px;
   color: ${colors.pickerEigth};
   transition-duration: 0.7s;
   box-shadow: 0 0 1px ${() => colors.darknesTransparent};
+  &:hover {
+    border: solid 1px ${colors.pickerEigth};
+    transition-duration: 0.7s;
+    box-shadow: 0 0 10px ${() => colors.darknesTransparent};
+  }
   &:focus {
+    border: solid 1px ${colors.pickerEigth};
     transition-duration: 0.7s;
     box-shadow: 0 0 10px ${() => colors.darknesTransparent};
   }

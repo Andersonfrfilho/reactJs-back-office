@@ -40,6 +40,7 @@ export default function Drawer({
   valueSearch,
   functionOnChangeTextSearch,
   palceholderSearch,
+  functionOnClickLink,
 }) {
   return (
     <AreaDrawer>
@@ -71,7 +72,10 @@ export default function Drawer({
             return (
               <>
                 <AreaOptions>
-                  <AreaOption to={`${path}${option.link}`}>
+                  <AreaOption
+                    to={`${path}${option.link}`}
+                    onClick={() => functionOnClickLink(`${option.name}`)}
+                  >
                     <AreaIconOptions>
                       <option.icon />
                     </AreaIconOptions>
@@ -124,6 +128,7 @@ Drawer.propTypes = {
   palceholderSearch: PropTypes.string,
   functionOnChangeTextSearch: PropTypes.func,
   functionOnClickOpenSuboption: PropTypes.func,
+  functionOnClickLink: PropTypes.func,
 };
 Drawer.defaultProps = {
   openDrawer: false,
@@ -133,6 +138,7 @@ Drawer.defaultProps = {
   palceholderSearch: 'placeholder search:',
   functionOnClickOpenSuboption: () => {},
   functionOnChangeTextSearch: () => {},
+  functionOnClickLink: () => {},
   options: [
     {
       option: '1',

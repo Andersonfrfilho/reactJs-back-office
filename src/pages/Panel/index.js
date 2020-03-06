@@ -57,8 +57,6 @@ export default function Panel({ match: { path } }) {
         </AreaDrawer>
 
         <AreaContent>
-          <Link to={`${path}/comments`}>asdf</Link>
-          <Link to={`${path}/`}>xvcb</Link>
           <Switch>
             <Route path={`${path}`} exact component={Content1} />
             <Route path={`${path}/comments`} component={Content2} />

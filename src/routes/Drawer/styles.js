@@ -30,6 +30,7 @@ export const AreaDrawer = styled.div`
 export const AreaContent = styled.div`
   display: flex;
   flex: 9;
+  flex-direction: column;
 `;
 export const IconUserList = styled(IoIosPeople)`
   color: ${colors.pickerEigth};
