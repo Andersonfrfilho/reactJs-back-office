@@ -10,6 +10,7 @@ export default {
   black: '#000',
 
   primary: '#7A91CA',
+  dodgerBlue: '#1E90FF',
   secundary: '#444A54',
   success: '#9DCA83',
   danger: '#E37A7A',

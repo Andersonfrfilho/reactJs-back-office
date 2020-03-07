@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const AreaSvg = styled.div`
+  display: flex;
   flex: 1;
 `;
 export const Svg = styled.svg`

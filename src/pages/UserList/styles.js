@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaSistrix, FaTimes, FaPlus } from 'react-icons/fa';
 import { colors, metrics } from '../../styles';
 
 export const AreaUserList = styled.div`
@@ -8,7 +8,17 @@ export const AreaUserList = styled.div`
   outline: 0;
   box-sizing: border-box;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: ${colors.light};
+`;
+export const AreaHeaderTable = styled.div`
+  display: flex;
+  height: 48px;
+`;
+export const AreaBodyTable = styled.div`
+  display: flex;
+  flex: 1;
 `;

@@ -16,6 +16,18 @@ export const AreaHeader = styled.div`
   justify-content: row;
   max-height: 68px;
   overflow: hidden;
+  @media (min-width: 300px) {
+    max-height: 34px;
+  }
+  @media (min-width: 400px) {
+    max-height: 68px;
+  }
+  @media (min-width: 800px) {
+    max-height: 68px;
+  }
+  @media (min-width: 1200px) {
+    max-height: 68px;
+  }
 `;
 export const AreaPhoto = styled.div`
   display: flex;
@@ -23,6 +35,18 @@ export const AreaPhoto = styled.div`
   align-items: center;
   min-width: ${({ open }) => (open ? 200 : 70)}px;
   overflow: hidden;
+  @media (min-width: 300px) {
+    min-width: ${({ open }) => (open ? 110 : 40)}px;
+  }
+  @media (min-width: 400px) {
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
+  @media (min-width: 800px) {
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
+  @media (min-width: 1200px) {
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
 `;
 export const Photo = styled.img`
   width: 60px;
@@ -31,6 +55,22 @@ export const Photo = styled.img`
   border-width: 3px;
   border-radius: 32px;
   box-shadow: 0 0 20px ${() => colors.boxShadownTransparend};
+  @media (min-width: 300px) {
+    width: 30px;
+    height: 80%;
+  }
+  @media (min-width: 400px) {
+    width: 60px;
+    height: 80%;
+  }
+  @media (min-width: 800px) {
+    width: 60px;
+    height: 80%;
+  }
+  @media (min-width: 1200px) {
+    width: 60px;
+    height: 80%;
+  }
 `;
 export const AreaInfo = styled.div`
   display: flex;
@@ -52,6 +92,18 @@ export const AreaSearch = styled.div`
   display: flex;
   flex: 1;
   max-height: 40px;
+  @media (min-width: 300px) {
+    max-height: 25px;
+  }
+  @media (min-width: 400px) {
+    max-height: 40px;
+  }
+  @media (min-width: 800px) {
+    max-height: 40px;
+  }
+  @media (min-width: 1200px) {
+    max-height: 40px;
+  }
 `;
 export const AreaInputSearch = styled.div`
   display: flex;
@@ -79,12 +131,37 @@ export const InputSearch = styled.input`
     transition-duration: 0.7s;
     box-shadow: 0 0 10px ${() => colors.darknesTransparent};
   }
+  @media (min-width: 300px) {
+    width: 82%;
+    border-radius: 3px;
+  }
+  @media (min-width: 400px) {
+    width: 92%;
+  }
+  @media (min-width: 800px) {
+    width: 92%;
+  }
+  @media (min-width: 1200px) {
+    width: 92%;
+  }
 `;
 export const AreaInputIconSearch = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 70px;
+  @media (min-width: 300px) {
+    min-width: 40px;
+  }
+  @media (min-width: 400px) {
+    min-width: 70px;
+  }
+  @media (min-width: 800px) {
+    min-width: 70px;
+  }
+  @media (min-width: 1200px) {
+    min-width: 70px;
+  }
 `;
 export const AreaBody = styled.div`
   display: flex;
@@ -140,6 +217,18 @@ export const AreaIconOptions = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 70px;
+  @media (min-width: 300px) {
+    min-width: 40px;
+  }
+  @media (min-width: 400px) {
+    min-width: 70px;
+  }
+  @media (min-width: 800px) {
+    min-width: 70px;
+  }
+  @media (min-width: 1200px) {
+    min-width: 70px;
+  }
 `;
 export const AreaTitle = styled.div`
   display: flex;

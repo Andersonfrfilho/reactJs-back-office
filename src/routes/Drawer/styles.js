@@ -25,6 +25,22 @@ export const AreaDrawer = styled.div`
   min-width: ${({ open }) => (open ? 200 : 70)}px;
   flex-direction: column;
   transition-duration: 0.7s;
+  @media (min-width: 300px) {
+    flex: ${({ open }) => (open ? 1 : 0)};
+    min-width: ${({ open }) => (open ? 110 : 0)}px;
+  }
+  @media (min-width: 400px) {
+    flex: ${({ open }) => (open ? 1.5 : 0.4)};
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
+  @media (min-width: 800px) {
+    flex: ${({ open }) => (open ? 1.5 : 0.4)};
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
+  @media (min-width: 1200px) {
+    flex: ${({ open }) => (open ? 1.5 : 0.4)};
+    min-width: ${({ open }) => (open ? 200 : 70)}px;
+  }
 `;
 
 export const AreaContent = styled.div`

@@ -17,6 +17,18 @@ export const AreaHeader = styled.header`
   height: 58px;
   width: 100%;
   background-color: ${colors.pickerOne};
+  @media (min-width: 300px) {
+    height: 38px;
+  }
+  @media (min-width: 400px) {
+    height: 58px;
+  }
+  @media (min-width: 800px) {
+    height: 58px;
+  }
+  @media (min-width: 1200px) {
+    height: 58px;
+  }
 `;
 export const AreaItems = styled.div`
   display: flex;
@@ -28,6 +40,18 @@ export const AreaItems = styled.div`
   padding-left: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
+  @media (min-width: 300px) {
+    padding-left: 5px;
+  }
+  @media (min-width: 400px) {
+    padding-left: 15px;
+  }
+  @media (min-width: 800px) {
+    padding-left: 15px;
+  }
+  @media (min-width: 1200px) {
+    padding-left: 15px;
+  }
 `;
 export const DrawerButton = styled.button`
   display: flex;
@@ -56,6 +80,26 @@ export const DrawerButton = styled.button`
     background-color: ${() => colors.whiteTransparent};
     color:${() => colors.white};
   }
+  @media (min-width: 300px) {
+    width: 30px;
+    height: 30px;
+    margin-right:5px;
+  }
+  @media (min-width: 400px) {
+    width: 40px;
+  height: 40px;
+  margin-right:15px;
+  }
+  @media (min-width: 800px) {
+    width: 40px;
+  height: 40px;
+  margin-right:15px;
+  }
+  @media (min-width: 1200px) {
+    width: 40px;
+  height: 40px;
+  margin-right:15px;
+  }
 `;
 
 export const AreaSvg = styled.svg`
@@ -64,6 +108,22 @@ export const AreaSvg = styled.svg`
   align-items: center;
   height: 42px;
   width: 42px;
+  @media (min-width: 300px) {
+    width: 38px;
+    height: 38px;
+  }
+  @media (min-width: 400px) {
+    height: 42px;
+    width: 42px;
+  }
+  @media (min-width: 800px) {
+    height: 42px;
+    width: 42px;
+  }
+  @media (min-width: 1200px) {
+    height: 42px;
+    width: 42px;
+  }
 `;
 export const Image = styled.image`
   height: 100%;
@@ -75,19 +135,26 @@ export const AreaUserButtonExpand = styled.div`
   position: absolute;
   height: ${({ open }) => (open ? 116 : 58)}px;
   z-index: 2;
-
   cursor: pointer;
+  @media (min-width: 300px) {
+    width: 35px;
+    left: 100%-35px;
+    height: ${({ open }) => (open ? 56 : 38)}px;
+  }
   @media (min-width: 400px) {
     width: 70px;
     left: 100%-70px;
+    height: ${({ open }) => (open ? 116 : 58)}px;
   }
   @media (min-width: 800px) {
     width: 140px;
     left: 100%-140px;
+    height: ${({ open }) => (open ? 116 : 58)}px;
   }
   @media (min-width: 1200px) {
     width: 210px;
     left: 100%-210px;
+    height: ${({ open }) => (open ? 116 : 58)}px;
   }
 `;
 export const AreaUserButon = styled.div`
@@ -116,6 +183,35 @@ export const AreaUserButon = styled.div`
       /* color: ${colors.pickerTwo}; */
     }
   }
+  @media (min-width: 300px) {
+    height: 38px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    background-color: ${colors.pickerOne};
+  }
+  @media (min-width: 400px) {
+    height: 55px;
+    padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  background-color: ${colors.pickerTwo};
+  }
+  @media (min-width: 800px) {
+    height: 55px;
+    padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  background-color: ${colors.pickerTwo};
+  }
+  @media (min-width: 1200px) {
+    height: 55px;
+    padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  background-color: ${colors.pickerTwo};
+  }
+
 `;
 export const AreaPhoto = styled.div`
   display: flex;
@@ -127,16 +223,22 @@ export const AreaPhoto = styled.div`
   border-radius: 29px;
   overflow: hidden;
   transition-duration: 0.7s;
-  background-color: ${colors.pickerOne};
+  @media (min-width: 300px) {
+    display: ${({ exist }) => (exist ? 'flex' : 'none')};
+    height: 35px;
+  }
   @media (min-width: 400px) {
     display: ${({ exist }) => (exist ? 'flex' : 'none')};
     flex: 1;
+    height: 95%;
   }
   @media (min-width: 800px) {
     flex: 1;
+    height: 95%;
   }
   @media (min-width: 1200px) {
     flex: 2;
+    height: 95%;
   }
 `;
 export const Photo = styled.img`
@@ -151,6 +253,9 @@ export const AreaTitle = styled.div`
   padding-left: 5px;
   padding-right: 5px;
   transition-duration: 0.7s;
+  @media (min-width: 300px) {
+    display: ${({ exits }) => (exits ? 'flex' : 'none')};
+  }
   @media (min-width: 400px) {
     display: ${({ exits }) => (exits ? 'flex' : 'none')};
   }
@@ -170,6 +275,10 @@ export const AreaIcon = styled.div`
   align-items: center;
   transition-duration: 0.7s;
   width: 40px;
+  @media (min-width: 300px) {
+    display: ${({ exist }) => (exist ? 'flex' : 'none')};
+    flex: 1;
+  }
   @media (min-width: 400px) {
     display: ${({ exist }) => (exist ? 'flex' : 'none')};
     flex: 1;
