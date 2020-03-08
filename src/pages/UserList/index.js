@@ -19,11 +19,43 @@ import Button from '../../components/ButtonIcon';
 export default function UserList() {
   const [table, setTable] = useState([
     {
-      id: 'Código',
-      name: 'Nome',
-      email: 'E-mail',
-      fone: 'Telefone',
-      date: 'Data',
+      options: [
+        {
+          name: 'Código',
+          type: 'number',
+          select: false,
+          length: 1,
+          align: 'center',
+        },
+        {
+          name: 'Nome',
+          type: 'alpha',
+          select: false,
+          length: 2,
+          align: 'flex-start',
+        },
+        {
+          name: 'E-mail',
+          type: 'alpha',
+          select: false,
+          length: 3,
+          align: 'flex-start',
+        },
+        {
+          name: 'Telefone',
+          type: 'alpha',
+          select: false,
+          length: 2,
+          align: 'flex-start',
+        },
+        {
+          name: 'Data',
+          type: 'alpha',
+          select: false,
+          length: 2,
+          align: 'flex-start',
+        },
+      ],
     },
     {
       id: '1',
@@ -33,7 +65,7 @@ export default function UserList() {
       date: '05/07/1999',
     },
     {
-      id: '1',
+      id: '2',
       name: 'Andréia',
       email: 'Andreia@gmail.com',
       fone: '(16)99191-1396',

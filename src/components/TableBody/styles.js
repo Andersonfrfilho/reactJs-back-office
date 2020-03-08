@@ -1,5 +1,10 @@
 import styled, { keyframes, css } from 'styled-components';
-import { FaFilter } from 'react-icons/fa';
+import {
+  FaSortAlphaUp,
+  FaSortAlphaDown,
+  FaSortNumericDown,
+  FaSortNumericUp,
+} from 'react-icons/fa';
 import {
   MdDelete,
   MdEdit,
@@ -15,20 +20,24 @@ export const AreaTable = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  background-color: ${colors.white};
 `;
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 48px;
-  background-color: #12aaff;
 `;
 export const Column = styled.td`
   display: flex;
-  align-items: center;
   flex: ${({ flex }) => flex};
-  padding-left: 3px;
-  border: solid 3px;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: ${colors.regular};
   overflow: hidden;
+  color: ${({ header }) => (header ? colors.dark : colors.regular)};
+  font-weight: ${({ header }) => (header ? 'bold' : 'normal')};
 `;
 export const AreaActionsIcons = styled.div`
   display: flex;
@@ -45,91 +54,90 @@ export const AreaInfo = styled.div`
   display: flex;
   flex: 1;
   justify-content: ${({ align }) => align};
+  align-items: center;
   overflow: hidden;
+  svg {
+    visibility: hidden;
+  }
+  /* &:focus-within {
+  } */
+  &:hover {
+    cursor: pointer;
+    svg {
+      visibility: visible;
+    }
+  }
 `;
 export const Info = styled.p`
   overflow: hidden;
-  padding-left: 3px;
 `;
 export const IconEdit = styled(MdEdit)`
   transition-duration: 0.3s;
+  padding: 0px;
+  border-radius: 50%;
   &:hover {
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.whiteTransparent};
+    padding: 3px;
+    background-color: ${colors.boxShadownTransparend};
   }
   &:active {
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.darkTransparent};
+    background-color: ${colors.whiteTransparent};
   }
 `;
 export const IconDelete = styled(MdDelete)`
   transition-duration: 0.3s;
+  padding: 0px;
+  border-radius: 50%;
   &:hover {
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.whiteTransparent};
+    padding: 3px;
+    background-color: ${colors.boxShadownTransparend};
   }
   &:active {
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.darkTransparent};
+    background-color: ${colors.whiteTransparent};
   }
 `;
 export const IconSquareUnselect = styled(MdCheckBoxOutlineBlank)`
   transition-duration: 0.3s;
+  border-radius: 50%;
+  padding: 0px;
   &:hover {
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.whiteTransparent};
+    padding: 3px;
+    background-color: ${colors.boxShadownTransparend};
   }
   &:active {
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.darkTransparent};
+    background-color: ${colors.whiteTransparent};
   }
 `;
 export const IconSquareSelect = styled(MdCheckBox)`
   transition-duration: 0.3s;
+  border-radius: 50%;
+  padding: 0px;
   &:hover {
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.whiteTransparent};
+    padding: 3px;
+    background-color: ${colors.boxShadownTransparend};
   }
   &:active {
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.darkTransparent};
+    background-color: ${colors.whiteTransparent};
   }
 `;
 export const IconSquareAllSelect = styled(MdIndeterminateCheckBox)`
   transition-duration: 0.3s;
+  border-radius: 50%;
+  padding: 0px;
   &:hover {
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.whiteTransparent};
+    padding: 3px;
+    background-color: ${colors.boxShadownTransparend};
   }
   &:active {
-    padding: 5px;
-    border-radius: 50%;
-    background-color: ${colors.darkTransparent};
-  }
-`;
-export const IconFilter = styled(FaFilter)`
-  transition-duration: 0.3s;
-  &:hover {
-    cursor: pointer;
-    border-radius: 10%;
     background-color: ${colors.whiteTransparent};
   }
-  &:active {
-    border-radius: 10%;
-    background-color: ${colors.darkTransparent};
-  }
 `;
+export const IconFilterAlphaDown = styled(FaSortAlphaDown)``;
+export const IconFilterAlphaUp = styled(FaSortAlphaUp)``;
+
+export const IconFilterNumericDown = styled(FaSortNumericDown)``;
+export const IconFilterNumericUp = styled(FaSortNumericUp)``;

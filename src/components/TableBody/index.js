@@ -12,14 +12,23 @@ import {
   IconDelete,
   IconSquareUnselect,
   IconSquareAllSelect,
-  IconFilter,
+  IconFilterNumericDown,
+  IconFilterNumericUp,
+  IconFilterAlphaDown,
+  IconFilterAlphaUp,
 } from './styles';
 
+function functionSelectFilterNumber(selectParam) {
+  return selectParam ? <IconFilterNumericDown /> : <IconFilterNumericUp />;
+}
+function functionSelectFilterAlpha(selectParam) {
+  return selectParam ? <IconFilterAlphaDown /> : <IconFilterAlphaUp />;
+}
 export default function TableBody({ infoTable }) {
   return (
     <AreaTable>
       <Row key="index">
-        <Column flex={2}>
+        <Column flex={2} header>
           <AreaIcons>
             <IconSquareUnselect />
           </AreaIcons>
@@ -28,32 +37,16 @@ export default function TableBody({ infoTable }) {
           </AreaInfo>
           <AreaIcons />
         </Column>
-        <Column flex={1}>
-          <IconFilter />
-          <AreaInfo>
-            <Info>{infoTable[0].id}</Info>
-          </AreaInfo>
-        </Column>
-        <Column flex={2}>
-          <AreaInfo>
-            <Info>{infoTable[0].name}</Info>
-          </AreaInfo>
-        </Column>
-        <Column flex={3}>
-          <AreaInfo>
-            <Info>{infoTable[0].email}</Info>
-          </AreaInfo>
-        </Column>
-        <Column flex={2}>
-          <AreaInfo>
-            <Info>{infoTable[0].fone}</Info>
-          </AreaInfo>
-        </Column>
-        <Column flex={2}>
-          <AreaInfo>
-            <Info>{infoTable[0].date}</Info>
-          </AreaInfo>
-        </Column>
+        {infoTable[0].options.map(option => (
+          <Column flex={option.length} header>
+            <AreaInfo align={option.align}>
+              <Info>{option.name}</Info>
+              {option.type === 'number'
+                ? functionSelectFilterNumber(option.select)
+                : functionSelectFilterAlpha(option.select)}
+            </AreaInfo>
+          </Column>
+        ))}
       </Row>
       {infoTable.map((element, index) => {
         const { id, name, email, fone, date } = element;

@@ -20,5 +20,6 @@ export const AreaHeaderTable = styled.div`
 `;
 export const AreaBodyTable = styled.div`
   display: flex;
+
   flex: 1;
 `;

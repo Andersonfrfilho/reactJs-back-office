@@ -13,10 +13,10 @@ export const AreaItensTable = styled.div`
   justify-content: ${({ align }) => align};
   align-items: center;
   background-color: ${({ color }) => color};
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 5px;
 `;
 export const TitleList = styled.p`
+  padding-left: 5px;
   font-weight: bold;
 `;
 export const AreaSearchAdd = styled.div`
