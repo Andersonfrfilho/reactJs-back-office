@@ -17,6 +17,7 @@ import {
   AreaBody,
   AreaOptionsList,
   AreaOptions,
+  AreaOptionLink,
   AreaOption,
   AreaIconOptions,
   IconFont,
@@ -72,17 +73,28 @@ export default function Drawer({
             return (
               <>
                 <AreaOptions>
-                  <AreaOption
-                    to={`${path}${option.link}`}
-                    onClick={() => functionOnClickLink(`${option.name}`)}
-                  >
-                    <AreaIconOptions>
-                      <option.icon />
-                    </AreaIconOptions>
-                    <AreaTitle>
-                      <TitleOption>{option.name}</TitleOption>
-                    </AreaTitle>
-                  </AreaOption>
+                  {option.link ? (
+                    <AreaOptionLink
+                      to={`${option.route.path}`}
+                      onClick={() => functionOnClickLink(`${option.name}`)}
+                    >
+                      <AreaIconOptions>
+                        <option.icon />
+                      </AreaIconOptions>
+                      <AreaTitle>
+                        <TitleOption>{option.name}</TitleOption>
+                      </AreaTitle>
+                    </AreaOptionLink>
+                  ) : (
+                    <AreaOption>
+                      <AreaIconOptions>
+                        <option.icon />
+                      </AreaIconOptions>
+                      <AreaTitle>
+                        <TitleOption>{option.name}</TitleOption>
+                      </AreaTitle>
+                    </AreaOption>
+                  )}
 
                   {option.suboptions.length > 0 ? (
                     <AreaIconDownUp
@@ -96,7 +108,7 @@ export default function Drawer({
                 {option.open
                   ? option.suboptions.map(suboption => (
                       <AreaOptions>
-                        <AreaOption to={`${path}${suboption.link}`}>
+                        <AreaOptionLink to={`${path}${suboption.link}`}>
                           <AreaIconOptions />
                           <AreaIconDownUp>
                             <suboption.icon />
@@ -104,7 +116,7 @@ export default function Drawer({
                           <AreaTitle>
                             <TitleOption>{option.name}</TitleOption>
                           </AreaTitle>
-                        </AreaOption>
+                        </AreaOptionLink>
                       </AreaOptions>
                     ))
                   : null}

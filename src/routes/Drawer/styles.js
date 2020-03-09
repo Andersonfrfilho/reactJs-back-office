@@ -17,7 +17,6 @@ export const AreaDrawerPanel = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
-  background-color: #124567;
 `;
 export const AreaDrawer = styled.div`
   display: flex;
@@ -25,6 +24,7 @@ export const AreaDrawer = styled.div`
   min-width: ${({ open }) => (open ? 200 : 70)}px;
   flex-direction: column;
   transition-duration: 0.7s;
+  overflow: hidden;
   @media (min-width: 300px) {
     flex: ${({ open }) => (open ? 1 : 0)};
     min-width: ${({ open }) => (open ? 110 : 0)}px;
@@ -47,6 +47,7 @@ export const AreaContent = styled.div`
   display: flex;
   flex: 9;
   flex-direction: column;
+  overflow: hidden;
 `;
 export const IconUserList = styled(IoIosPeople)`
   color: ${colors.pickerEigth};

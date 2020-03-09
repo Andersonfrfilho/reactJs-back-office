@@ -77,7 +77,6 @@ export const IconEdit = styled(MdEdit)`
   border-radius: 50%;
   &:hover {
     cursor: pointer;
-    padding: 3px;
     background-color: ${colors.boxShadownTransparend};
   }
   &:active {

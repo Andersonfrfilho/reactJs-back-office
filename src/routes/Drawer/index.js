@@ -28,7 +28,7 @@ export default function Panel({ match: { path } }) {
         id: '1',
         name: 'Lista de usuários',
         open: false,
-        link: `/`,
+        link: false,
         icon: () => <IconUserList />,
         route: {
           path: `${path}/`,
@@ -41,10 +41,10 @@ export default function Panel({ match: { path } }) {
             id: '1',
             name: 'Lista de usuários',
             open: false,
-            link: `/`,
+            link: `/lalala`,
             icon: () => <IconUserList />,
             route: {
-              path: `${path}/`,
+              path: `${path}/lalala`,
               exact: true,
               main: () => <UserList />,
             },
@@ -96,7 +96,7 @@ export default function Panel({ match: { path } }) {
       options: newOptions,
     };
     setDrawerFind(newDrawer);
-  }, [searchText]);//eslint-disable-line
+  }, [searchText]); //eslint-disable-line
   return (
     <Router>
       <AreaPanel>
@@ -127,15 +127,28 @@ export default function Panel({ match: { path } }) {
           <AreaContent>
             <DrawerContentHeader name={namePage} />
             <Switch>
-              {drawer.options.map(({ route }, index) => {
-                return (
-                  <Route
-                    key={index.toString()}
-                    path={route.path}
-                    exact={route.exact}
-                    children={<route.main />}
-                  />
-                );
+              {drawer.options.map((option, index) => {
+                const { link, route, suboptions } = option;
+                if (link) {
+                  return (
+                    <Route
+                      key={index.toString()}
+                      path={route.path}
+                      exact={route.exact}
+                      children={<route.main />}
+                    />
+                  );
+                }
+                return suboptions.map((suboptions, indexParam) => {
+                  return (
+                    <Route
+                      key={indexParam.toString()}
+                      path={suboptions.route.path}
+                      exact={suboptions.route.exact}
+                      children={<suboptions.route.main />}
+                    />
+                  );
+                });
               })}
             </Switch>
           </AreaContent>

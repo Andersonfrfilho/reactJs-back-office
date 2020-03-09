@@ -202,7 +202,17 @@ export const AreaOptions = styled.div`
     background-color: ${colors.boxShadownTransparend};
   }
 `;
-export const AreaOption = styled(Link)`
+export const AreaOptionLink = styled(Link)`
+  display: flex;
+  flex: 1;
+  text-decoration: none;
+  color: ${colors.black};
+  max-height: 50px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const AreaOption = styled.div`
   display: flex;
   flex: 1;
   text-decoration: none;
