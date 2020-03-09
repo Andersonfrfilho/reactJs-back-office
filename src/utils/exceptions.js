@@ -1,6 +1,6 @@
-export function UserException(message) {
+export function NewException(name, message) {
+  this.name = name;
   this.message = message;
-  this.name = 'UserException';
 }
 export function errorVerify(error) {
   if (error instanceof TypeError) {

@@ -9,7 +9,7 @@ import {
   failureAction,
   // breakAction,
 } from '../common/actions';
-import { errorVerify } from '../../../config/Exceptions';
+import { errorVerify } from '../../../utils';
 
 function* requestAddToUserRepository({ payload }) {
   const { user } = payload;

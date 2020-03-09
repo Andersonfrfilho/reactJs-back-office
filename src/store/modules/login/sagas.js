@@ -10,7 +10,7 @@ import {
   failureAction,
   breakAction,
 } from '../common/actions';
-import { UserException, errorVerify } from '../../../config/Exceptions';
+import { NewException, errorVerify } from '../../../utils';
 
 function* requestAddToUser({ payload }) {
   const { user, users } = payload;
@@ -31,7 +31,7 @@ function* requestAddToUser({ payload }) {
         toast.success('Usuario adicionado');
         yield put(successAction(''));
       } else {
-        throw new UserException('usuário ja cadastrado');
+        throw new NewException('usuário ja cadastrado');
       }
     }
   } catch (error) {

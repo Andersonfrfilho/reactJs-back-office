@@ -8,8 +8,8 @@ import Panel from './Drawer';
 export default function Routes() {
   return (
     <Switch>
+      <Route path="/" exact component={Login} />
       <Route path="/Drawer" exact component={Panel} />
-      <Route path="/Login" exact component={Login} />
     </Switch>
   );
 }
