@@ -15,13 +15,13 @@ import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
 import InputIcon from '../../components/InputIcon';
 import Button from '../../components/ButtonIcon';
+import Loader from '../../components/Loader';
 
 export default function Login() {
-  const { loading } = useSelector(state => state.common);
+  const { loading, error, message } = useSelector(state => state.common);
   const { users } = useSelector(state => state.login);
   const dispatch = useDispatch();
   const [userState, setUserState] = useState('');
-  const [newUser, setNewUser] = useState(0);
   const inputUserRef = useRef('');
   useEffect(() => {
     dispatch(LoginActions.requestUsersExist());
@@ -29,9 +29,6 @@ export default function Login() {
   useEffect(() => {
     localStorage.setItem('Modelo@users', JSON.stringify(users));
   }, [users]); //eslint-disable-line
-  function functionUpdateValueInputUser(text) {
-    setUserState(text);
-  }
 
   // Event handler utilizing useCallback ...
   // ... so that reference never changes.
@@ -39,10 +36,10 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(LoginActions.addToUserRequest(userState, users));
-    setNewUser('');
+    setUserState('');
   }
   function verifyFunction() {
-    console.tron.log('uhul');
+    console.tron.log(userState);
   }
   return (
     <Container>
@@ -53,13 +50,15 @@ export default function Login() {
         <AreaInputs>
           <InputIcon
             inputRef={inputUserRef}
-            functionUpdatedValueRef={text => functionUpdateValueInputUser(text)}
+            placeholder="Digite seu usuário:"
+            error={error}
+            functionUpdatedValueRef={text => setUserState(text)}
             functionOnEndingChange={() => verifyFunction()}
           />
           <InputIcon />
         </AreaInputs>
         <AreaButton>
-          <Button />
+          <Button loading={loading} />
         </AreaButton>
         <AreaRegisterForgotedPassword>
           <AreaLink position>

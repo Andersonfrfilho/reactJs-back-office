@@ -89,7 +89,7 @@ export default function Panel({ match: { path } }) {
 
   useEffect(() => {
     const newOptions = drawer.options.filter(element =>
-      element.name.toLowerCase().includes(searchText)
+      element.name.toLowerCase().includes(searchText.toLowerCase())
     );
     const newDrawer = {
       ...drawer,

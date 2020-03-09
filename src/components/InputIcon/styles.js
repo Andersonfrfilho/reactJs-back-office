@@ -1,5 +1,6 @@
 import styled, { injectGlobal } from 'styled-components';
 import { FaUserAlt } from 'react-icons/fa';
+import InputMask from 'react-input-mask';
 import { colors, metrics, fonts } from '../../styles';
 import Montserrat from '../../assets/fonts/Roboto-Regular.ttf';
 
@@ -23,6 +24,16 @@ export const AreaInput = styled.div`
   padding-top: 3px;
 `;
 export const Input = styled.input`
+  width: 100%;
+  font-size: ${metrics.fontSize + 4}px;
+  border-width: 0px;
+  background-color: none;
+  outline: none;
+  :focus {
+    border-color: none;
+  }
+`;
+export const InputFormMask = styled(InputMask)`
   width: 100%;
   font-size: ${metrics.fontSize + 4}px;
   border-width: 0px;

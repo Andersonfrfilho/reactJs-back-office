@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AreaButtonIcon, Button, IconUser } from './styles';
+import { AreaButtonIcon, Button, IconUser, Title } from './styles';
+import Loader from '../Loader';
 import { colors } from '../../styles';
 
 export default function ButtonIcon({
@@ -9,14 +10,28 @@ export default function ButtonIcon({
   loading,
   loadingSize,
   loadingColor,
+  title,
   disabled,
 }) {
+  function functionIconPosition(positionParam, titleParam) {
+    if (positionParam === 'left') {
+      return (
+        <>
+          <IconUser /> <Title>{titleParam}</Title>
+        </>
+      );
+    }
+    return (
+      <>
+        <Title>{titleParam}</Title>
+        <IconUser />
+      </>
+    );
+  }
   return (
     <AreaButtonIcon>
-      <Button>
-        {iconPosition === 'left' ? <IconUser /> : null}
-        Click Me!
-        {iconPosition === 'rigth' ? <IconUser /> : null}
+      <Button disabled={disabled}>
+        {loading ? <Loader /> : functionIconPosition(iconPosition, title)}
       </Button>
     </AreaButtonIcon>
   );
@@ -32,7 +47,7 @@ ButtonIcon.propTypes = {
 };
 ButtonIcon.defaultProps = {
   iconPosition: 'rigth',
-  title: 'Título da Página',
+  title: 'Título do Botão',
   functionOnPress: () => {},
   loading: false,
   loadingSize: 'small',

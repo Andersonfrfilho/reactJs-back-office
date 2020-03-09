@@ -42,3 +42,4 @@ export const IconUser = styled(FaUserAlt)`
     color: ${() => colors.light};
   }
 `;
+export const Title = styled.p``;
