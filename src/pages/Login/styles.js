@@ -14,6 +14,7 @@ export const Container = styled.div`
 `;
 export const AreaForm = styled.form`
   max-width: 700px;
+  height: 100%;
   background-color: ${() => colors.white};
   border-radius: 4px;
   box-shadow: 0 0 20px ${() => colors.boxShadownTransparend};

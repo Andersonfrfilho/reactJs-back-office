@@ -28,7 +28,7 @@ export default function Login() {
   }, []); //eslint-disable-line
   useEffect(() => {
     localStorage.setItem('Modelo@users', JSON.stringify(users));
-   }, [users]); //eslint-disable-line
+  }, [users]); //eslint-disable-line
   function functionUpdateValueInputUser(text) {
     setUserState(text);
   }
@@ -36,9 +36,6 @@ export default function Login() {
   // Event handler utilizing useCallback ...
   // ... so that reference never changes.
 
-  useEffect(() => {
-    console.tron.log('verify value');
-  },[userState])//eslint-disable-line
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(LoginActions.addToUserRequest(userState, users));
