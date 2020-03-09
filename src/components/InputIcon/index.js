@@ -7,10 +7,13 @@ import {
   InputFormMask,
   AreaIcon,
   IconUser,
+  IconOpenEyes,
+  IconClosedEyes,
 } from './styles';
-import { useEventListener, cpf } from '../../utils';
+import { useEventListener } from '../../utils';
 
 export default function InputIcon({
+  iconName,
   button,
   functionOnClick,
   error,
@@ -23,6 +26,18 @@ export default function InputIcon({
   inputMask,
 }) {
   useEventListener('focusout', functionOnEndingChange);
+  function choseIcons(nameParam) {
+    switch (nameParam) {
+      case 'user':
+        return <IconUser />;
+      case 'passwordOpen':
+        return <IconOpenEyes />;
+      case 'passwordClosed':
+        return <IconClosedEyes />;
+      default:
+        return <IconUser />;
+    }
+  }
   return (
     <AreaInputIcon>
       <AreaInput error={error}>
@@ -47,12 +62,13 @@ export default function InputIcon({
         error={error}
         disabled={disabled}
       >
-        <IconUser />
+        {choseIcons(iconName)}
       </AreaIcon>
     </AreaInputIcon>
   );
 }
 InputIcon.propTypes = {
+  iconName: PropTypes.string,
   button: PropTypes.bool,
   functionOnClick: PropTypes.func,
   functionUpdatedValueRef: PropTypes.func,
@@ -65,6 +81,7 @@ InputIcon.propTypes = {
   placeholder: PropTypes.string,
 };
 InputIcon.defaultProps = {
+  iconName: 'user',
   button: false,
   functionOnClick: () => {},
   functionUpdatedValueRef: () => {},

@@ -1,5 +1,5 @@
 import styled, { injectGlobal } from 'styled-components';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaUserAlt, FaEye, FaEyeSlash } from 'react-icons/fa';
 import InputMask from 'react-input-mask';
 import { colors, metrics, fonts } from '../../styles';
 import Montserrat from '../../assets/fonts/Roboto-Regular.ttf';
@@ -62,4 +62,11 @@ export const AreaIcon = styled.button`
 
 export const IconUser = styled(FaUserAlt)`
   color: ${() => colors.dark};
+`;
+export const IconOpenEyes = styled(FaEye)`
+  color: ${() => colors.blue};
+`;
+
+export const IconClosedEyes = styled(FaEyeSlash)`
+  color: ${() => colors.blue};
 `;
