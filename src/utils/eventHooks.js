@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-
+// use hooks
+// useEventListener('focusout', functionOnEndingChange);
 export default function useEventListener(eventName, handler, element = window) {
   // Create a ref that stores handler
   const savedHandler = useRef();

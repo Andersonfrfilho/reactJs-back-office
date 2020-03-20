@@ -10,7 +10,6 @@ import {
   IconOpenEyes,
   IconClosedEyes,
 } from './styles';
-import { useEventListener } from '../../utils';
 
 export default function InputIcon({
   iconName,
@@ -25,7 +24,6 @@ export default function InputIcon({
   placeholder,
   inputMask,
 }) {
-  // useEventListener('focusout', functionOnEndingChange);
   function choseIcons(nameParam) {
     switch (nameParam) {
       case 'user':

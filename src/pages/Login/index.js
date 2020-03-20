@@ -39,7 +39,7 @@ export default function Login() {
     setUserState('');
   }
   function verifyFunction() {
-    console.log('userState');
+    console.log('Verificando campo');
   }
   return (
     <Container>
