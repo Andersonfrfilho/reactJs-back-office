@@ -39,7 +39,7 @@ export default function Login() {
     setUserState('');
   }
   function verifyFunction() {
-    console.tron.log(userState);
+    console.log('userState');
   }
   return (
     <Container>

@@ -25,7 +25,7 @@ export default function InputIcon({
   placeholder,
   inputMask,
 }) {
-  useEventListener('focusout', functionOnEndingChange);
+  // useEventListener('focusout', functionOnEndingChange);
   function choseIcons(nameParam) {
     switch (nameParam) {
       case 'user':
@@ -46,6 +46,7 @@ export default function InputIcon({
             ref={inputRef}
             placeholder={placeholder}
             onChange={text => functionUpdatedValueRef(text.target.value)}
+            onBlur={functionOnEndingChange}
           />
         ) : (
           <InputFormMask
@@ -53,6 +54,7 @@ export default function InputIcon({
             mask={inputMask}
             placeholder={placeholder}
             onChange={text => functionUpdatedValueRef(text.target.value)}
+            onBlur={functionOnEndingChange}
           />
         )}
       </AreaInput>
