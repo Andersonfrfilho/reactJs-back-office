@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { StaticRouter } from 'react-router';
 import {
   AreaPanel,
   AreaDrawerPanel,
@@ -14,7 +15,10 @@ import UserList from '../../pages/UserList';
 import UserRegistration from '../../pages/UserRegister';
 import DrawerContentHeader from '../../components/DrawerContentHeader';
 
-export default function Panel({ match: { path } }) {
+export default function Panel(props) {
+  const {
+    match: { path },
+  } = props;
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const [drawer, setDrawer] = useState({
@@ -30,7 +34,7 @@ export default function Panel({ match: { path } }) {
         route: {
           path: `${path}/`,
           exact: true,
-          main: () => <UserList />,
+          main: () => <UserList props={props} />,
         },
         // suboptions: [],
         suboptions: [
@@ -132,7 +136,7 @@ export default function Panel({ match: { path } }) {
                       key={index.toString()}
                       path={route.path}
                       exact={route.exact}
-                      children={<route.main />}
+                      children={() => <route.main />}
                     />
                   );
                 }
@@ -142,7 +146,7 @@ export default function Panel({ match: { path } }) {
                       key={indexParam.toString()}
                       path={suboptions.route.path}
                       exact={suboptions.route.exact}
-                      children={<suboptions.route.main />}
+                      children={() => <suboptions.route.main />}
                     />
                   );
                 });

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 import { Container } from './styles';
 import * as HomeActions from '../../store/modules/home/actions';
 import Button from '../../components/ButtonIcon';
 
-export default function UserRegistration() {
+function UserRegistration({ history }) {
   const dispatch = useDispatch();
   function onChangePageChildren() {
-    dispatch(HomeActions.changePageChildren());
+    dispatch(HomeActions.changePageChildren(history));
   }
   return (
     <Container>
@@ -20,3 +20,4 @@ export default function UserRegistration() {
     </Container>
   );
 }
+export default withRouter(UserRegistration);
