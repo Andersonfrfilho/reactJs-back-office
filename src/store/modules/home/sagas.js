@@ -1,41 +1,21 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
-import api from '../../../services/api';
-import { addToRepository, addToUser } from './actions';
-// import history from '../../../services/history';
 import {
   loading,
   successAction,
   failureAction,
-  // breakAction,
+  breakAction,
 } from '../common/actions';
-import { errorVerify } from '../../../utils';
+import history from '../../../services/history';
 
-function* requestAddToUserRepository({ payload }) {
-  const { user } = payload;
-  yield put(loading());
-  try {
-    const { data: repositories } = yield call(
-      api.get,
-      `/users/${user.login.toLowerCase()}/repos`,
-      {
-        params: {
-          per_page: 5,
-        },
-      }
-    );
-    yield put(addToUser(user));
-    yield put(addToRepository(repositories));
-    yield put(successAction(''));
-  } catch (error) {
-    const menssage = errorVerify(error.message);
-    toast.error(menssage);
-    yield put(failureAction(menssage));
-  }
+function* requestChangePage() {
+  yield put(loading(''));
+  history.push('/Drawer/userList');
+  // observação caso vc tente utiliza o history go ele ira para agina porém resetaram os estados
+  // o que não deve ser feito pois estou tentando passar os estados para o reducer de uma pagina
+  // para acessa-los ao seu inicio :x
+  // history.go();
+  yield put(successAction(''));
 }
 export default all([
-  takeLatest(
-    '@home/REQUEST_ADD_TO_USER_REPOSITORY',
-    requestAddToUserRepository
-  ),
+  takeLatest('@testeNavigation/REQUEST_CHANGE_PAGE', requestChangePage),
 ]);

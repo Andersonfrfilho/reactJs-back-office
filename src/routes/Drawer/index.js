@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {
   AreaPanel,
   AreaDrawerPanel,
@@ -10,7 +8,6 @@ import {
   IconUserList,
   IconRegisterUser,
 } from './styles';
-import * as HomeActions from '../../store/modules/home/actions';
 import Header from '../../components/Header';
 import Drawer from '../../components/Drawer';
 import UserList from '../../pages/UserList';
@@ -41,11 +38,11 @@ export default function Panel({ match: { path } }) {
             id: '1',
             name: 'Lista de usuários',
             open: false,
-            link: `/lalala`,
+            link: `/userList`,
             icon: () => <IconUserList />,
             route: {
-              path: `${path}/lalala`,
-              exact: true,
+              path: `${path}/userList`,
+              exact: false,
               main: () => <UserList />,
             },
           },

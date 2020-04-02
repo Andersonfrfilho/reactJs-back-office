@@ -29,7 +29,7 @@ export default function ButtonIcon({
     );
   }
   return (
-    <AreaButtonIcon>
+    <AreaButtonIcon onClick={functionOnClick}>
       <Button disabled={disabled}>
         {loading ? <Loader /> : functionIconPosition(iconPosition, title)}
       </Button>
