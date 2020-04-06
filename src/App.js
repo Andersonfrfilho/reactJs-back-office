@@ -9,7 +9,6 @@ import store from './store';
 import history from './services/history';
 
 function App() {
-  console.tron.log();
   return (
     <Provider store={store}>
       <Router history={history}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   AreaInputIcon,
@@ -6,9 +6,7 @@ import {
   Input,
   InputFormMask,
   AreaIcon,
-  IconUser,
-  IconOpenEyes,
-  IconClosedEyes,
+  IconDefault,
 } from './styles';
 
 export default function InputIcon({
@@ -23,19 +21,9 @@ export default function InputIcon({
   functionOnEndingChange,
   placeholder,
   inputMask,
+  icon,
+  typeInput,
 }) {
-  function choseIcons(nameParam) {
-    switch (nameParam) {
-      case 'user':
-        return <IconUser />;
-      case 'passwordOpen':
-        return <IconOpenEyes />;
-      case 'passwordClosed':
-        return <IconClosedEyes />;
-      default:
-        return <IconUser />;
-    }
-  }
   return (
     <AreaInputIcon>
       <AreaInput error={error}>
@@ -45,6 +33,7 @@ export default function InputIcon({
             placeholder={placeholder}
             onChange={text => functionUpdatedValueRef(text.target.value)}
             onBlur={functionOnEndingChange}
+            type={typeInput}
           />
         ) : (
           <InputFormMask
@@ -53,22 +42,25 @@ export default function InputIcon({
             placeholder={placeholder}
             onChange={text => functionUpdatedValueRef(text.target.value)}
             onBlur={functionOnEndingChange}
+            type={typeInput}
           />
         )}
       </AreaInput>
       <AreaIcon
+        type="button"
         button={button}
         onClick={functionOnClick}
         error={error}
         disabled={disabled}
       >
-        {choseIcons(iconName)}
+        {icon()}
       </AreaIcon>
     </AreaInputIcon>
   );
 }
 InputIcon.propTypes = {
   iconName: PropTypes.string,
+  typeInput: PropTypes.string,
   button: PropTypes.bool,
   functionOnClick: PropTypes.func,
   functionUpdatedValueRef: PropTypes.func,
@@ -79,9 +71,11 @@ InputIcon.propTypes = {
   functionOnEndingChange: PropTypes.func,
   inputMask: PropTypes.string,
   placeholder: PropTypes.string,
+  icon: PropTypes.func,
 };
 InputIcon.defaultProps = {
   iconName: 'user',
+  typeInput: 'button',
   button: false,
   functionOnClick: () => {},
   functionUpdatedValueRef: () => {},
@@ -92,4 +86,5 @@ InputIcon.defaultProps = {
   functionOnEndingChange: () => {},
   inputMask: '99/99/99',
   placeholder: 'palceholder input:',
+  icon: () => <IconDefault />,
 };
