@@ -3,6 +3,8 @@ import { FaUserAlt } from 'react-icons/fa';
 import { colors, metrics } from '../../styles';
 
 export const Container = styled.div`
+  display: flex;
+  flex: 1;
   margin: 0;
   padding: 0;
   outline: 0;
@@ -11,17 +13,28 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 `;
 export const AreaForm = styled.form`
   max-width: 700px;
   background-color: ${() => colors.white};
   border-radius: 4px;
-  box-shadow: 0 0 20px ${() => colors.boxShadownTransparend};
+  box-shadow: 0 0 20px ${() => colors.boxShadownBlueTransparent};
   padding: 30px;
-  margin: 80px auto;
   font-size: 1.5em;
   border-radius: 4px;
+  transition-duration: 0.3s;
+  @media (min-width: 300px) {
+    flex: 1;
+  }
+  @media (min-width: 400px) {
+    flex: 1;
+  }
+  @media (min-width: 800px) {
+    flex: 0;
+  }
+  @media (min-width: 1200px) {
+    flex: 0;
+  }
 `;
 
 export const AreaLogo = styled.div`

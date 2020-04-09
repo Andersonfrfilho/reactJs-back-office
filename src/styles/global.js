@@ -20,7 +20,7 @@ export default createGlobalStyle`
     @media (min-width: 1200px) { min-width: 1200px;font-size: 20px }
   }
   body{
-    background:${() => colors.white};
+    background:${() => colors.pickerOne};
     -webkit-font-smoothing:antialiased !important;
   }
   body,input,button{
