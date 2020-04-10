@@ -8,28 +8,33 @@ export const AreaSvg = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const AreaText = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 20px;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+`;
 export const AreaTitle = styled.div`
   display: flex;
-  height: 20px;
+  flex: 1;
   justify-content: center;
+  align-items: stretch;
 `;
 export const Title = styled.p`
   flex: 1;
   align-items: center;
   color: ${({ error }) => (error ? colors.danger : colors.dark)};
   transition-duration: 0.7s;
-  @media (min-width: 300px) {
-    font-size: 10px;
-  }
-  @media (min-width: 400px) {
-    font-size: 12px;
-  }
-  @media (min-width: 800px) {
-    font-size: 14px;
-  }
-  @media (min-width: 1200px) {
-    font-size: 16px;
-  }
+`;
+export const Message = styled.p`
+  flex: 1;
+  align-items: center;
+  color: ${({ error }) => (error ? colors.danger : colors.dark)};
+  transition-duration: 0.7s;
+  font-size: 12px;
 `;
 export const Svg = styled.svg`
   width: 100%;

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   Container,
   AreaForm,
@@ -8,9 +9,9 @@ import {
   AreaButton,
   AreaRegisterForgotedPassword,
   AreaLink,
+  Link,
 } from './styles';
-import { verifyEmail } from '../../utils';
-import * as UsersActions from '../../store/modules/users/actions';
+import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
 import InputIcon from '../../components/InputIcon';
 import Button from '../../components/ButtonIcon';
@@ -19,51 +20,55 @@ import { icons } from '../../styles';
 
 export default function Login() {
   const { loading, error, message } = useSelector(state => state.common);
+  const { users } = useSelector(state => state.login);
   const dispatch = useDispatch();
-  const [emailState, setEmailState] = useState('');
-  const [passwordState, setPasswordState] = useState('');
+  const [userState, setUserState] = useState('');
   const [showFieldState, setShowFieldState] = useState(false);
   const [transitionVisible, setTransitionVisible] = useState(false);
-  const [errorMail, setErrorMail] = useState(null);
-
+  const inputUserRef = useRef('');
+  const inputPasswordRef = useRef('');
   useEffect(() => {
-    dispatch(UsersActions.requestUserExist());
+    dispatch(LoginActions.requestUsersExist());
   }, []); //eslint-disable-line
+  useEffect(() => {
+    localStorage.setItem('Modelo@users', JSON.stringify(users));
+  }, [users]); //eslint-disable-line
 
   // Event handler utilizing useCallback ...
   // ... so that reference never changes.
   function functionForgetSenha() {
     setTransitionVisible(!transitionVisible);
   }
-  function requestLogin(emailParam, passwordParam) {
-    dispatch(UsersActions.requestLogin(emailParam, passwordParam));
-    setEmailState('');
-    setPasswordState('');
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(LoginActions.addToUserRequest(userState, users));
+    setUserState('');
   }
-  function verifyMailFunction(value) {
-    setErrorMail(verifyEmail(value));
-  }
+  function verifyFunction(userParam) {}
+  console.tron.log(showFieldState);
   return (
     <Container test={transitionVisible}>
-      <AreaForm>
+      <AreaForm onSubmit={e => handleSubmit(e)}>
         <AreaLogo>
-          <Logo title="Login" message={message} error={error} />
+          <Logo title="Login" message="uhul" />
         </AreaLogo>
 
         <AreaInputs>
           <InputIcon
+            inputRef={inputUserRef}
             placeholder="Digite seu usuário:"
-            error={errorMail}
-            value={emailState}
-            functionOnChange={text => setEmailState(text)}
-            functionOnEndingChange={() => verifyMailFunction(emailState)}
+            error={error}
+            functionUpdatedValueRef={text => setUserState(text)}
+            functionOnEndingChange={() => verifyFunction(userState)}
             icon={() => <icons.UserIcon size={18} />}
-            typeInput="email"
+            typeInput="text"
           />
           <InputIcon
+            inputRef={inputPasswordRef}
             placeholder="Digite sua senha:"
-            functionOnChange={text => setPasswordState(text)}
-            value={passwordState}
+            error={error}
+            functionUpdatedValueRef={text => setUserState(text)}
+            functionOnEndingChange={() => verifyFunction(userState)}
             functionOnClick={() => setShowFieldState(!showFieldState)}
             disabled={false}
             typeInput={showFieldState ? 'text' : 'password'}
@@ -78,19 +83,11 @@ export default function Login() {
           />
         </AreaInputs>
         <AreaButton>
-          <Button
-            loading={loading}
-            title="Entrar"
-            disabled={errorMail === null || errorMail || loading}
-            functionOnClick={() =>
-              requestLogin(emailState.toLowerCase(), passwordState)
-            }
-          />
+          <Button loading={loading} />
         </AreaButton>
         <AreaRegisterForgotedPassword>
           <AreaLink position>
             <Button
-              disabled={loading}
               onClick={() => functionForgetSenha()}
               icon={() => <icons.UserForgotPassword size={18} />}
               title=""
@@ -99,7 +96,6 @@ export default function Login() {
           <AreaLink />
           <AreaLink position={false}>
             <Button
-              disabled={loading}
               onClick={() => functionForgetSenha()}
               icon={() => <icons.UserPlusIcon size={18} />}
               title=""

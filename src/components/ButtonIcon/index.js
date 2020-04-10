@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AreaButtonIcon, Button, IconUser, Title } from './styles';
+import { AreaButtonIcon, Button, Title } from './styles';
 import Loader from '../Loader';
 import { colors } from '../../styles';
 
@@ -8,30 +8,29 @@ export default function ButtonIcon({
   iconPosition,
   functionOnClick,
   loading,
-  loadingSize,
-  loadingColor,
   title,
   disabled,
+  icon,
 }) {
-  function functionIconPosition(positionParam, titleParam) {
+  function functionIconPosition(positionParam, titleParam, iconParam) {
     if (positionParam === 'left') {
       return (
         <>
-          <IconUser /> <Title>{titleParam}</Title>
+          {iconParam()} <Title>{titleParam}</Title>
         </>
       );
     }
     return (
       <>
         <Title>{titleParam}</Title>
-        <IconUser />
+        {iconParam()}
       </>
     );
   }
   return (
-    <AreaButtonIcon onClick={functionOnClick}>
-      <Button disabled={disabled}>
-        {loading ? <Loader /> : functionIconPosition(iconPosition, title)}
+    <AreaButtonIcon onClick={functionOnClick} disabled={disabled}>
+      <Button>
+        {loading ? <Loader /> : functionIconPosition(iconPosition, title, icon)}
       </Button>
     </AreaButtonIcon>
   );
@@ -44,13 +43,15 @@ ButtonIcon.propTypes = {
   loadingSize: PropTypes.string,
   loadingColor: PropTypes.string,
   disabled: PropTypes.bool,
+  icon: PropTypes.func,
 };
 ButtonIcon.defaultProps = {
   iconPosition: 'rigth',
   title: 'Título do Botão',
-  functionOnPress: () => {},
+  functionOnClick: () => {},
   loading: false,
   loadingSize: 'small',
   loadingColor: colors.light,
   disabled: true,
+  icon: () => {},
 };

@@ -10,14 +10,13 @@ import {
 } from './styles';
 
 export default function InputIcon({
-  iconName,
+  value,
   button,
   functionOnClick,
   error,
   disabled,
-  inputRef,
   type,
-  functionUpdatedValueRef,
+  functionOnChange,
   functionOnEndingChange,
   placeholder,
   inputMask,
@@ -29,20 +28,19 @@ export default function InputIcon({
       <AreaInput error={error}>
         {type !== 'mask' ? (
           <Input
-            ref={inputRef}
+            value={value}
             placeholder={placeholder}
-            onChange={text => functionUpdatedValueRef(text.target.value)}
+            onChange={text => functionOnChange(text.target.value)}
             onBlur={functionOnEndingChange}
             type={typeInput}
           />
         ) : (
           <InputFormMask
-            ref={inputRef}
+            value={value}
             mask={inputMask}
             placeholder={placeholder}
-            onChange={text => functionUpdatedValueRef(text.target.value)}
-            onBlur={functionOnEndingChange}
             type={typeInput}
+            onChange={text => functionOnChange(text.target.value)}
           />
         )}
       </AreaInput>
@@ -59,30 +57,28 @@ export default function InputIcon({
   );
 }
 InputIcon.propTypes = {
-  iconName: PropTypes.string,
   typeInput: PropTypes.string,
   button: PropTypes.bool,
   functionOnClick: PropTypes.func,
-  functionUpdatedValueRef: PropTypes.func,
+  functionOnChange: PropTypes.func,
   error: PropTypes.bool,
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  inputRef: PropTypes.func,
+  value: PropTypes.string,
   functionOnEndingChange: PropTypes.func,
   inputMask: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.func,
 };
 InputIcon.defaultProps = {
-  iconName: 'user',
   typeInput: 'button',
   button: false,
   functionOnClick: () => {},
-  functionUpdatedValueRef: () => {},
+  functionOnChange: () => {},
   error: false,
   type: 'common',
   disabled: true,
-  inputRef: () => {},
+  value: '',
   functionOnEndingChange: () => {},
   inputMask: '99/99/99',
   placeholder: 'palceholder input:',

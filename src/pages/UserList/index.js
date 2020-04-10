@@ -11,7 +11,6 @@ import {
 } from './styles';
 import TableHeader from '../../components/TableHeader';
 import TableBody from '../../components/TableBody';
-import * as LoginActions from '../../store/modules/login/actions';
 import Logo from '../../components/Logo';
 import InputIcon from '../../components/InputIcon';
 import Button from '../../components/ButtonIcon';

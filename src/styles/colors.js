@@ -21,7 +21,7 @@ export default {
   boxShadownTransparent: 'rgba(0, 0, 0, 0.1)',
   boxShadownBlueTransparent: 'rgba(12,43,99,0.2)',
   whiteTransparent: 'rgba(255,255,255,0.3)',
-
+  // https://pigment.shapefactory.co/?d=3&s=3&a=2A4C7F&b=FFFFFF
   pickerOne: '#3A6092',
   pickerTwo: '#2A4C7F',
   pickerTree: '#1D3D71',
