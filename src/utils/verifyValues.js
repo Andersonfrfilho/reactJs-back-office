@@ -19,11 +19,18 @@ export function verifyEmail(email) {
 }
 export function verifyName(name) {
   const alphabet = /[^A-Za-zÀ-ÖØ-öø-ÿ ]/;
-  if (!alphabet.exec(name) && name.length >= 3) {
+  if (!(!alphabet.exec(name) && name.length >= 3)) {
     return true;
   }
   return false;
 }
-export function verifyPhone(number) {
+export function verifyPhone(phone = '00000000') {
+  console.tron.log(phone);
+  if (phone === '0000000') {
+    return true;
+  }
+  if (phone.length >= 13 || phone.length === 12) {
+    return false;
+  }
   return true;
 }

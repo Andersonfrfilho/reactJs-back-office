@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaFonticons, FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import { colors, metrics } from '../../styles';
+import { colors } from '../../styles';
 
 export const AreaDrawer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: ${colors.pickerOne};
+  background-color: ${colors.pickerFive};
 `;
 export const AreaHeader = styled.div`
   display: flex;
@@ -35,6 +35,9 @@ export const AreaPhoto = styled.div`
   align-items: center;
   min-width: ${({ open }) => (open ? 200 : 70)}px;
   overflow: hidden;
+  svg {
+    color: ${colors.dark};
+  }
   @media (min-width: 300px) {
     min-width: ${({ open }) => (open ? 110 : 40)}px;
   }
@@ -83,6 +86,7 @@ export const Title = styled.div`
   text-overflow: ellipsis;
   padding-left: 5px;
   width: 100%;
+  color: ${colors.dark};
 `;
 export const Text = styled.div`
   width: 100%;
@@ -92,6 +96,7 @@ export const AreaSearch = styled.div`
   display: flex;
   flex: 1;
   max-height: 40px;
+  margin-bottom: 5px;
   @media (min-width: 300px) {
     max-height: 25px;
   }
@@ -119,8 +124,9 @@ export const InputSearch = styled.input`
   padding-left: ${({ open }) => (open ? 5 : 0)}px;
   border-radius: 8px;
   color: ${colors.pickerEigth};
+
   transition-duration: 0.7s;
-  box-shadow: 0 0 1px ${() => colors.darknesTransparent};
+  box-shadow: 0 0 3px ${() => colors.darknesTransparent};
   &:hover {
     border: solid 1px ${colors.pickerEigth};
     transition-duration: 0.7s;
@@ -134,15 +140,19 @@ export const InputSearch = styled.input`
   @media (min-width: 300px) {
     width: 82%;
     border-radius: 3px;
+    font-size: 10px;
   }
   @media (min-width: 400px) {
     width: 92%;
+    font-size: 14px;
   }
   @media (min-width: 800px) {
     width: 92%;
+    font-size: 16px;
   }
   @media (min-width: 1200px) {
     width: 92%;
+    font-size: 18px;
   }
 `;
 export const AreaInputIconSearch = styled.div`
@@ -167,17 +177,15 @@ export const AreaBody = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: ${colors.pickerOne};
+  background-color: ${colors.pickerFive};
   overflow: hidden;
 `;
 
 export const AreaSubOption = styled.div`
   flex: 1;
   height: 24px;
-  background-color: #126792;
 `;
 export const AreaUnderline = styled.div`
-  flex: 1;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -188,7 +196,7 @@ export const AreaUnderline = styled.div`
 `;
 export const Underline = styled.div`
   margin-top: 3px;
-  background-color: ${colors.boxShadownTransparend};
+  background-color: ${colors.boxShadownTransparent};
   height: 80%;
 `;
 export const AreaOptionsList = styled.div`
@@ -196,10 +204,23 @@ export const AreaOptionsList = styled.div`
 `;
 export const AreaOptions = styled.div`
   display: flex;
-  max-height: 50px;
+  min-height: 50px;
+  margin-top: 3px;
   &:hover {
     transition-duration: 0.7s;
-    background-color: ${colors.boxShadownTransparend};
+    background-color: ${colors.boxShadownTransparent};
+  }
+  @media (min-width: 300px) {
+    min-height: 30px;
+  }
+  @media (min-width: 400px) {
+    min-height: 50px;
+  }
+  @media (min-width: 800px) {
+    min-height: 50px;
+  }
+  @media (min-width: 1200px) {
+    min-height: 50px;
   }
 `;
 export const AreaOptionLink = styled(Link)`
@@ -227,17 +248,22 @@ export const AreaIconOptions = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 70px;
+  visibility: visible;
   @media (min-width: 300px) {
-    min-width: 40px;
+    min-width: 0px;
+    visibility: hidden;
   }
   @media (min-width: 400px) {
     min-width: 70px;
+    visibility: visible;
   }
   @media (min-width: 800px) {
     min-width: 70px;
+    visibility: visible;
   }
   @media (min-width: 1200px) {
     min-width: 70px;
+    visibility: visible;
   }
 `;
 export const AreaTitle = styled.div`

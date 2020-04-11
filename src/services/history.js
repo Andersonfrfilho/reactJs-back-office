@@ -1,5 +1,9 @@
+import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
-export default history;
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+export { history, useQuery };

@@ -16,7 +16,7 @@ export const AreaHeader = styled.header`
   align-items: center;
   height: 40px;
   width: 100%;
-  background-color: ${colors.pickerTree};
+  background-color: ${colors.pickerSeven};
 `;
 export const AreaTitle = styled.div`
   display: flex;
@@ -26,5 +26,5 @@ export const AreaTitle = styled.div`
   padding-left: 5px;
 `;
 export const Title = styled.p`
-  color: ${colors.pickerEigth};
+  color: ${colors.dark};
 `;

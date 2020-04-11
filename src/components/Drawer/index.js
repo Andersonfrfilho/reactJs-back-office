@@ -20,7 +20,6 @@ import {
   AreaOptionLink,
   AreaOption,
   AreaIconOptions,
-  IconFont,
   AreaUnderline,
   Underline,
   TitleOption,
@@ -29,7 +28,8 @@ import {
   IconUp,
   IconDown,
 } from './styles';
-import logo from '../../assets/images/logo.svg';
+import { icons } from '../../styles';
+// import logo from '../../assets/images/logo.svg';
 
 export default function Drawer({
   openDrawer,
@@ -47,13 +47,14 @@ export default function Drawer({
     <AreaDrawer>
       <AreaHeader>
         <AreaPhoto>
-          <Photo src={logo} />
+          <icons.UserContactIcon />
         </AreaPhoto>
         <AreaInfo open={openDrawer}>
-          <Title>{name}</Title>
+          <Title>{name.charAt(0).toUpperCase() + name.slice(1)}</Title>
           {subname ? <Text open={openDrawer}>{subname}</Text> : null}
         </AreaInfo>
       </AreaHeader>
+
       <AreaSearch>
         <AreaInputIconSearch>
           <IconSeach />
@@ -67,7 +68,11 @@ export default function Drawer({
           />
         </AreaInputSearch>
       </AreaSearch>
+
       <AreaBody>
+        <AreaUnderline>
+          <Underline />
+        </AreaUnderline>
         <AreaOptionsList>
           {options.map((option, index) => {
             return (
@@ -109,10 +114,10 @@ export default function Drawer({
                   ? option.suboptions.map(suboption => (
                       <AreaOptions>
                         <AreaOptionLink to={`${path}${suboption.link}`}>
-                          <AreaIconOptions />
-                          <AreaIconDownUp>
+                          <AreaIconDownUp />
+                          <AreaIconOptions>
                             <suboption.icon />
-                          </AreaIconDownUp>
+                          </AreaIconOptions>
                           <AreaTitle>
                             <TitleOption>{option.name}</TitleOption>
                           </AreaTitle>

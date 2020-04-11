@@ -8,32 +8,56 @@ import {
   FaBackspace,
   FaRegEnvelope,
   FaPhone,
+  FaCheck,
+  FaUsers,
+  FaRegAddressBook,
 } from 'react-icons/fa';
 import colors from './colors';
+import metrics from './metrics';
 
 const UserIcon = styled(FaUserAlt)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const EyeOpenIcon = styled(FaEye)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const EyeClosedIcon = styled(FaEyeSlash)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const UserPlusIcon = styled(FaUserPlus)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const UserForgotPassword = styled(FaUserLock)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const BackIcon = styled(FaBackspace)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const EmailIcon = styled(FaRegEnvelope)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const PhoneIcon = styled(FaPhone)`
-  color: ${colors.pickerTwo};
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
+const CorrectIcon = styled(FaCheck)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
+const UserListIcon = styled(FaUsers)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
+const UserContactIcon = styled(FaRegAddressBook)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 export default {
   UserIcon,
@@ -44,4 +68,7 @@ export default {
   BackIcon,
   EmailIcon,
   PhoneIcon,
+  CorrectIcon,
+  UserListIcon,
+  UserContactIcon,
 };

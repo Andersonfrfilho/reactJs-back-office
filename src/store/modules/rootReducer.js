@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import login from './users/reducer';
-import home from './home/reducer';
+import users from './users/reducer';
+import contact from './contacts/reducer';
 import common from './common/reducer';
 
 export default combineReducers({
-  login,
-  home,
+  users,
+  contact,
   common,
 });

@@ -22,6 +22,7 @@ export default {
   boxShadownBlueTransparent: 'rgba(12,43,99,0.2)',
   whiteTransparent: 'rgba(255,255,255,0.3)',
   // https://pigment.shapefactory.co/?d=3&s=3&a=2A4C7F&b=FFFFFF
+
   pickerOne: '#3A6092',
   pickerTwo: '#2A4C7F',
   pickerTree: '#1D3D71',
@@ -31,4 +32,9 @@ export default {
   pickerSix: '#EAEAEA',
   pickerSeven: '#D5D5D5',
   pickerEigth: '#BABABA',
+
+  pickerNine: '#FCFCFB',
+  pickerTen: '#E8E8E6',
+  pickerEleven: '#D4D4D1',
+  pickerTwelve: '#BABAB5',
 };

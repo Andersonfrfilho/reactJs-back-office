@@ -17,10 +17,11 @@ import Button from '../../components/ButtonIcon';
 import Loader from '../../components/Loader';
 import { icons } from '../../styles';
 
-export default function Login() {
+export default function Register() {
   const { loading, error, message } = useSelector(state => state.common);
   const dispatch = useDispatch();
   const [nameState, setNameState] = useState('');
+  const [localMessage, setLocalMessage] = useState('');
   const [phoneState, setPhoneState] = useState('');
   const [emailState, setEmailState] = useState('');
   const [passwordState, setPasswordState] = useState('');
@@ -32,19 +33,13 @@ export default function Login() {
   const [errorPhone, setErrorPhone] = useState(null);
   const [errorMail, setErrorMail] = useState(null);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(null);
-
+  const [maskState, setMaskState] = useState('+55 (99) 9 9999-9999');
   useEffect(() => {
+    setTransitionVisible(true);
     dispatch(UsersActions.requestUserExist());
   }, []); //eslint-disable-line
-  useEffect(() => {
-    if (!(passwordState === confirmPasswordState)) {
-      setErrorConfirmPassword(true);
-    }
-    setErrorConfirmPassword(false);
-  }, [confirmPasswordState]); //eslint-disable-line
-  // Event handler utilizing useCallback ...
-  // ... so that reference never changes.
-  function functionForgetSenha() {
+
+  function functionBackPage() {
     setTransitionVisible(!transitionVisible);
   }
   function requestRegisterUser(
@@ -69,23 +64,48 @@ export default function Login() {
     setPasswordState('');
     setConfirmPasswordState('');
   }
-  function verifyNameFunction(value) {
-    setErrorName(verifyName(value));
+  function verifyNameFunction(nameParam, messageParam = '') {
+    const errorResult = verifyName(nameParam);
+    setErrorName(errorResult);
+    setLocalMessage(errorResult ? messageParam : '');
   }
-  function verifyMailFunction(value) {
-    setErrorMail(verifyEmail(value));
+  function verifyMailFunction(mailParam, messageParam = '') {
+    const errorResult = verifyEmail(mailParam);
+    setErrorMail(errorResult);
+    setLocalMessage(errorResult ? messageParam : '');
   }
-  function verifyPhoneFunction(value) {
-    setErrorPhone(verifyPhone(value));
+  function verifyPhoneFunction(phoneParam, messageParam = '') {
+    const errorResult = verifyPhone(phoneParam);
+    if (phoneParam.length === 13) {
+      setMaskState('+55 (99) 9 9999-9999');
+    } else {
+      setMaskState('+55 (99) 99999-9999');
+    }
+    setErrorPhone(errorResult);
+    setLocalMessage(errorResult ? messageParam : '');
+  }
+  function verifyConfirmPassword(
+    password,
+    confirmPasswordParam,
+    messageParam = ''
+  ) {
+    setErrorConfirmPassword(password !== confirmPasswordParam);
+    setLocalMessage(password !== confirmPasswordParam ? messageParam : '');
   }
   return (
-    <Container test={transitionVisible}>
+    <Container visible={transitionVisible}>
       <AreaForm>
         <AreaLogo>
           <Logo
             title="Cadastro"
-            message={message}
-            error={error}
+            message={message || localMessage}
+            error={
+              error ||
+              errorName ||
+              errorPhone ||
+              errorMail ||
+              errorConfirmPassword
+            }
             image={false}
           />
         </AreaLogo>
@@ -96,29 +116,41 @@ export default function Login() {
             error={errorName}
             value={nameState}
             functionOnChange={name => setNameState(name)}
-            functionOnEndingChange={() => verifyName(nameState)}
+            functionOnEndingChange={() =>
+              verifyNameFunction(nameState, 'Digite um nome válido.')
+            }
             icon={() => <icons.UserIcon size={18} />}
             typeInput="text"
+            disabled={loading}
           />
           <InputIcon
             placeholder="Digite seu e-mail:"
             error={errorMail}
             value={emailState}
             functionOnChange={email => setEmailState(email)}
-            functionOnEndingChange={() => verifyMailFunction(emailState)}
+            functionOnEndingChange={() =>
+              verifyMailFunction(emailState, 'Digite um e-mail válido.')
+            }
             icon={() => <icons.EmailIcon size={18} />}
             typeInput="email"
+            disabled={loading}
           />
           <InputIcon
             type="mask"
-            inputMask="+55_(99)_99999-9999"
+            inputMask={maskState}
             placeholder="Digite seu telefone:"
             error={errorPhone}
             value={phoneState}
             functionOnChange={phone => setPhoneState(phone)}
-            functionOnEndingChange={() => verifyPhoneFunction(phoneState)}
+            functionOnEndingChange={() =>
+              verifyPhoneFunction(
+                phoneState.replace(/[_()+-\s]+/g, ''),
+                'Digite um telefone válido.'
+              )
+            }
             icon={() => <icons.PhoneIcon size={18} />}
             typeInput="phone"
+            disabled={loading}
           />
           <InputIcon
             placeholder="Digite sua senha:"
@@ -128,6 +160,7 @@ export default function Login() {
             disabled={false}
             typeInput={showFieldState ? 'text' : 'password'}
             button
+            disabled={loading}
             icon={() =>
               showFieldState ? (
                 <icons.EyeOpenIcon size={18} />
@@ -140,10 +173,18 @@ export default function Login() {
             placeholder="Confirme sua senha:"
             functionOnChange={password => setConfirmPasswordState(password)}
             value={confirmPasswordState}
+            disabled={loading}
+            functionOnEndingChange={() =>
+              verifyConfirmPassword(
+                passwordState,
+                confirmPasswordState,
+                'Senhas divergentes.'
+              )
+            }
             functionOnClick={() => setShowFieldStateTwo(!showFieldStateTwo)}
-            disabled={false}
             typeInput={showFieldStateTwo ? 'text' : 'password'}
             button
+            error={errorConfirmPassword}
             icon={() =>
               showFieldStateTwo ? (
                 <icons.EyeOpenIcon size={18} />
@@ -156,7 +197,7 @@ export default function Login() {
         <AreaButton>
           <Button
             loading={loading}
-            title="Entrar"
+            title="Cadastrar  "
             disabled={
               errorName === null ||
               errorName ||
@@ -171,11 +212,27 @@ export default function Login() {
             functionOnClick={() =>
               requestRegisterUser(
                 nameState.toLowerCase(),
-                phoneState,
+                phoneState.replace(/[_()+-\s]+/g, ''),
                 emailState.toLowerCase(),
                 passwordState,
                 confirmPasswordState
               )
+            }
+            icon={() =>
+              !(
+                errorName === null ||
+                errorName ||
+                errorPhone === null ||
+                errorPhone ||
+                errorMail === null ||
+                errorMail ||
+                passwordState === '' ||
+                errorConfirmPassword === null ||
+                errorConfirmPassword ||
+                loading
+              ) ? (
+                <icons.CorrectIcon size={18} />
+              ) : null
             }
           />
         </AreaButton>
@@ -183,7 +240,7 @@ export default function Login() {
           <AreaLink position>
             <Button
               disabled={loading}
-              onClick={() => functionForgetSenha()}
+              onClick={() => functionBackPage()}
               icon={() => <icons.BackIcon size={18} />}
               title=""
             />

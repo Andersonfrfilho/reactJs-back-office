@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
   AreaUserList,
-  Row,
-  Column,
   AreaHeaderTable,
   AreaBodyTable,
   AreaIconAdd,
 } from './styles';
 import TableHeader from '../../components/TableHeader';
 import TableBody from '../../components/TableBody';
-import Logo from '../../components/Logo';
-import InputIcon from '../../components/InputIcon';
-import Button from '../../components/ButtonIcon';
+import * as ContactsActions from '../../store/modules/contacts/actions';
 
-export default function UserList() {
+function ContactList() {
+  const { loading, error, message } = useSelector(state => state.common);
+  const dispatch = useDispatch();
+  const [visibleModal, setVisibleModal] = useState(false);
   const [table, setTable] = useState([
     {
       options: [
@@ -71,10 +71,24 @@ export default function UserList() {
       date: '05/07/1945',
     },
   ]);
+  function goToPageAddContact() {
+    dispatch(ContactsActions.requestToPageAddContact());
+  }
+  const [valueSearch, setValueSearch] = useState('');
   return (
     <AreaUserList>
       <AreaHeaderTable>
-        <TableHeader />
+        <TableHeader
+          title="Lista de usuarios"
+          placeholderInputSearch="Pesquisar:"
+          functionOnChange={value => setValueSearch(value)}
+          valueSearch={valueSearch}
+          functionOnClickClear={() => setValueSearch('')}
+          functionOnClickAdd={() => goToPageAddContact()}
+          functionModalClosed={() => setVisibleModal(false)}
+          functionModalOpen={() => setVisibleModal(true)}
+          visibleModal={visibleModal}
+        />
       </AreaHeaderTable>
       <AreaBodyTable>
         <TableBody infoTable={table} />
@@ -82,3 +96,4 @@ export default function UserList() {
     </AreaUserList>
   );
 }
+export default withRouter(ContactList);

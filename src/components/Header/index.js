@@ -28,6 +28,7 @@ export default function Header({
   openUser,
   name,
   titleDrawer,
+  functionOnClickLogout,
   logoff,
 }) {
   return (
@@ -43,15 +44,15 @@ export default function Header({
       <AreaItems positionLine="flex-end" padding>
         <AreaUserButtonExpand open={openUser}>
           <AreaUserButon exist onClick={functionOnClickUser}>
-            <AreaPhoto exist>
+            {/* <AreaPhoto exist>
               <Photo src={avatar} />
             </AreaPhoto>
             <AreaTitle>
               <Title>{name}</Title>
-            </AreaTitle>
-            <AreaIcon>{openUser ? <IconUp /> : <IconDown />}</AreaIcon>
+            </AreaTitle > */}
+            <AreaIcon exist>{openUser ? <IconUp /> : <IconDown />}</AreaIcon>
           </AreaUserButon>
-          <AreaUserButon exist={openUser}>
+          <AreaUserButon exist={openUser} onClick={functionOnClickLogout}>
             <AreaPhoto />
             <AreaTitle align="flex-end">
               <Title>{logoff}</Title>
@@ -71,6 +72,7 @@ Header.propTypes = {
   functionOnClickDrawer: PropTypes.func,
   openDrawer: PropTypes.bool,
   functionOnClickUser: PropTypes.func,
+  functionOnClickLogout: PropTypes.func,
   openUser: PropTypes.bool,
   logoff: PropTypes.string,
 };
@@ -79,6 +81,7 @@ Header.defaultProps = {
   name: 'Name',
   logoff: 'logoff',
   functionOnClickDrawer: () => {},
+  functionOnClickLogout: () => {},
   openDrawer: true,
   functionOnClickUser: PropTypes.func,
   openUser: true,

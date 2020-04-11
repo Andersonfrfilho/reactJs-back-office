@@ -33,14 +33,17 @@ export default function InputIcon({
             onChange={text => functionOnChange(text.target.value)}
             onBlur={functionOnEndingChange}
             type={typeInput}
+            disabled={disabled}
           />
         ) : (
           <InputFormMask
             value={value}
             mask={inputMask}
             placeholder={placeholder}
+            onBlur={functionOnEndingChange}
             type={typeInput}
             onChange={text => functionOnChange(text.target.value)}
+            disabled={disabled}
           />
         )}
       </AreaInput>

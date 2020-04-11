@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { StaticRouter } from 'react-router';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   AreaPanel,
   AreaDrawerPanel,
@@ -9,62 +9,67 @@ import {
   IconUserList,
   IconRegisterUser,
 } from './styles';
+
+import * as ContactsActions from '../../store/modules/contacts/actions';
+import * as UsersActions from '../../store/modules/users/actions';
 import Header from '../../components/Header';
 import Drawer from '../../components/Drawer';
-import UserList from '../../pages/UserList';
-import UserRegistration from '../../pages/UserRegister';
+import ContactList from '../../pages/ContactList';
+import ContactRegister from '../../pages/ContactRegister';
 import DrawerContentHeader from '../../components/DrawerContentHeader';
+import { colors, icons } from '../../styles';
 
 export default function Panel(props) {
   const {
     match: { path },
   } = props;
+  const dispatch = useDispatch();
+  const { name } = useSelector(state => state.contact);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const [drawer, setDrawer] = useState({
-    name: 'Empresa',
+    name,
     subname: '',
     options: [
       {
         id: '1',
-        name: 'Lista de usuários',
+        name: 'Contatos',
         open: false,
-        link: false,
-        icon: () => <IconUserList />,
+        link: '/',
+        icon: () => <icons.UserListIcon color={colors.dark} />,
         route: {
           path: `${path}/`,
           exact: true,
-          main: () => <UserList props={props} />,
-        },
-        // suboptions: [],
-        suboptions: [
-          {
-            id: '1',
-            name: 'Lista de usuários',
-            open: false,
-            link: `/userList`,
-            icon: () => <IconUserList />,
-            route: {
-              path: `${path}/userList`,
-              exact: false,
-              main: () => <UserList />,
-            },
-          },
-        ],
-      },
-      {
-        id: '2',
-        name: 'Cadastro de usuários',
-        open: false,
-        link: `/registerUser`,
-        icon: () => <IconRegisterUser />,
-        route: {
-          path: `${path}/registerUser`,
-          exact: false,
-          main: () => <UserRegistration />,
+          main: () => <ContactList />,
         },
         suboptions: [],
       },
+      {
+        id: '2',
+        name: 'Registro',
+        open: false,
+        link: '/register',
+        icon: () => <icons.UserPlusIcon color={colors.dark} />,
+        route: {
+          path: `${path}/register`,
+          exact: false,
+          main: () => <ContactRegister />,
+        },
+        suboptions: [],
+      },
+      // {
+      //   id: '2',
+      //   name: 'Cadastro de usuários',
+      //   open: false,
+      //   link: `/registerUser`,
+      //   icon: () => <IconRegisterUser />,
+      //   route: {
+      //     path: `${path}/registerUser`,
+      //     exact: false,
+      //     main: () => <ContactRegistration />,
+      //   },
+      //   suboptions: [],
+      // },
     ],
   });
   const [drawerFind, setDrawerFind] = useState(drawer);
@@ -84,10 +89,18 @@ export default function Panel(props) {
     );
     setDrawerFind({ ...drawerParam, options: newOptions });
   }
+  function functionRequestLougout() {
+    dispatch(UsersActions.requestLogout());
+  }
   function functionClickLink(nameParam) {
     setNamePage(nameParam);
   }
+  useEffect(() => {
+    let user = localStorage.getItem('populus@user');
+    user = JSON.parse(user);
 
+    dispatch(ContactsActions.defineInformationUser(user.name));
+  }, []); //eslint-disable-line
   useEffect(() => {
     const newOptions = drawer.options.filter(element =>
       element.name.toLowerCase().includes(searchText.toLowerCase())
@@ -98,16 +111,26 @@ export default function Panel(props) {
     };
     setDrawerFind(newDrawer);
   }, [searchText]); //eslint-disable-line
+  useEffect(() => {
+    const newDrawer = {
+      ...drawer,
+      name,
+    };
+    setDrawer(newDrawer);
+  }, [name]); //eslint-disable-line
+
   return (
     <Router>
       <AreaPanel>
         <Header
+          functionOnClickLogout={() => functionRequestLougout()}
           functionOnClickDrawer={() => setOpenDrawer(!openDrawer)}
           openDrawer={openDrawer}
           functionOnClickUser={() => setOpenUser(!openUser)}
           openUser={openUser}
+          titleDrawer="Populus"
         />
-        <AreaDrawerPanel>
+        <AreaDrawerPanel color={colors.pickerSix}>
           <AreaDrawer open={openDrawer}>
             <Drawer
               openDrawer={openDrawer}
@@ -118,7 +141,7 @@ export default function Panel(props) {
                 functionOpenSuboption(indexParam, drawerFind)
               }
               path={path}
-              palceholderSearch="Digite a opção:"
+              palceholderSearch="Pesquisar:"
               valueSearch={searchText}
               functionOnChangeTextSearch={text => setSearchText(text)}
               functionOnClickLink={name => functionClickLink(name)}

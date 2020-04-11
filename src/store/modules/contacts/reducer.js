@@ -1,15 +1,16 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  email: '',
+  name: '',
 };
 
-export default function users(state = INITIAL_STATE, action) {
+export default function login(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case '@users/DEFINE_EMAIL':
+    case '@contacts/DEFINE_INFORMATION_USER':
       return produce(state, draft => {
-        draft.email = action.payload.email;
+        draft.name = action.payload.name;
       });
+
     default:
       return state;
   }

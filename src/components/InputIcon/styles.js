@@ -54,9 +54,24 @@ export const InputFormMask = styled(InputMask)`
   border-width: 0px;
   padding-left: 5px;
   background-color: none;
+  color: ${colors.pickerFour};
   outline: none;
   :focus {
     border-color: none;
+  }
+  ::placeholder {
+    color: ${colors.pickerFour};
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: ${colors.pickerFour};
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: ${colors.pickerFour};
   }
 `;
 export const AreaIcon = styled.button`

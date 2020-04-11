@@ -14,8 +14,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   transition-duration: 0.7s;
-  opacity: ${({ test }) => (test ? 0 : 1)};
-  visibility: ${({ test }) => (test ? 'hidden' : 'visible')};
+  opacity: ${({ visibled }) => (visibled ? 1 : 0)};
 `;
 export const AreaForm = styled.form`
   max-width: 700px;

@@ -1,12 +1,27 @@
-import styled, { keyframes, css } from 'styled-components';
-import { FaSistrix, FaTimes, FaRegPlusSquare } from 'react-icons/fa';
+import styled from 'styled-components';
+import { FaSistrix, FaTimes } from 'react-icons/fa';
 import { MdAddBox } from 'react-icons/md';
-import { colors, metrics } from '../../styles';
+import { colors } from '../../styles';
 
 export const AreaTitleSearchTable = styled.div`
   display: flex;
   flex: 1;
 `;
+export const Modal = styled.div`
+  display: ${({ visible }) =>
+    visible ? 'flex' : 'none'}; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  /*padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+`;
+
 export const AreaItensTable = styled.div`
   flex: 1;
   display: flex;
@@ -18,24 +33,25 @@ export const AreaItensTable = styled.div`
 export const TitleList = styled.p`
   padding-left: 5px;
   font-weight: bold;
+  color: ${colors.dark};
 `;
 export const AreaSearchAdd = styled.div`
   display: flex;
   height: 30px;
   width: 350px;
-  background-color: ${colors.pickerOne};
-  color: ${colors.pickerTree};
+  background-color: ${colors.pickerFive};
+  color: ${colors.pickerEleven};
   border: solid;
   border-width: 0px 0px 1px 0px;
   border-color: ${colors.pickerSeven};
   &:hover {
-    border-width: 0px 0px 2px 0px;
-    transition-duration: 0.3s;
-    border-color: ${colors.black};
+    border-width: 0px 0px 1px 0px;
+    transition-duration: 0.4s;
+    border-color: ${colors.darkTransparent};
   }
   /* quando for utilizar focagem em um filho */
   &:focus-within {
-    border-color: ${colors.dodgerBlue};
+    border-color: ${colors.darkTransparent};
     border-width: 0px 0px 2px 0px;
     transition-duration: 0.3s;
   }
@@ -69,11 +85,11 @@ export const AreaIconClear = styled.div`
   &:hover {
     cursor: pointer;
     border-radius: 50%;
-    background-color: ${colors.pickerFour};
+    background-color: ${colors.dark};
   }
   &:active {
     border-radius: 50%;
-    background-color: ${colors.pickerOne};
+    background-color: ${colors.pickerNine};
   }
 `;
 export const AreaIconAdd = styled.div`
@@ -82,8 +98,8 @@ export const AreaIconAdd = styled.div`
   height: 30px;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.pickerOne};
-  color: ${colors.pickerFour};
+  background-color: ${colors.pickerTwelve};
+  color: ${colors.dark};
   border-radius: 12px;
   margin-left: 10px;
   transition-duration: 0.7s;
@@ -91,10 +107,10 @@ export const AreaIconAdd = styled.div`
     cursor: pointer;
     width: 30px;
     height: 30px;
-    background-color: ${colors.pickerTree};
+    background-color: ${colors.pickerEigth};
   }
   &:active {
-    background-color: ${colors.pickerOne};
+    background-color: ${colors.dark};
   }
   @media (min-width: 300px) {
     width: 15px;
@@ -119,6 +135,8 @@ export const SearchInput = styled.input`
   padding-left: 5px;
   border: none;
   background-color: transparent;
+  font-size: 18px;
+  color: ${colors.dark};
 `;
 
 export const IconSearch = styled(FaSistrix)``;

@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Container } from './styles';
-import * as HomeActions from '../../store/modules/home/actions';
 import Button from '../../components/ButtonIcon';
 
-function UserRegistration({ history }) {
+function ContactRegister({ history }) {
   const dispatch = useDispatch();
-  function onChangePageChildren() {
-    dispatch(HomeActions.changePageChildren(history));
-  }
+  function onChangePageChildren() {}
   return (
     <Container>
-      <a>Tela1</a>
       <Button
         title="chamar sagas para ir para tela de listagem"
         functionOnClick={() => onChangePageChildren()}
@@ -20,4 +16,4 @@ function UserRegistration({ history }) {
     </Container>
   );
 }
-export default withRouter(UserRegistration);
+export default withRouter(ContactRegister);

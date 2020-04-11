@@ -1,30 +1,22 @@
-import { all, call, put, takeLatest, cancel } from 'redux-saga/effects';
+import { all, call, put, takeLatest, cancel, delay } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '../../../services/api';
-import history from '../../../services/history';
+import { history } from '../../../services/history';
 import {
   loading,
   successAction,
   failureAction,
   breakAction,
 } from '../common/actions';
+import { defineEmail } from './actions';
+import { defineInformationUser } from '../contacts/actions';
 import { errorVerify, NewException } from '../../../utils';
 
-function* requestLoginExist() {
-  yield put(loading(''));
-  const tokenExist = localStorage.getItem('populus@token');
-  if (tokenExist === null) {
-    yield put(breakAction(''));
-    yield cancel();
-  }
-  history('/drawer');
-  yield put(successAction(''));
-}
 function* requestLogin({ payload: { email, password } }) {
   yield put(loading(''));
   try {
     const {
-      data: { token },
+      data: { token, user },
     } = yield call(api.post, `/sessions`, { email, password });
     if (!token || token === null) {
       throw new NewException(
@@ -33,14 +25,32 @@ function* requestLogin({ payload: { email, password } }) {
       );
     }
     localStorage.setItem('populus@token', token);
+    localStorage.setItem('populus@user', JSON.stringify(user));
+    yield put(defineInformationUser(user.name));
     toast.success('login efetuado com sucesso');
-    history.push('/Drawer');
+    history.push('/drawer');
     yield put(successAction(''));
   } catch (error) {
     const message = errorVerify(error);
     toast.error(message);
     yield put(failureAction(message));
   }
+}
+function* requestLoginExist() {
+  yield put(loading(''));
+  const tokenExist = localStorage.getItem('populus@token');
+  if (tokenExist === null) {
+    yield put(breakAction(''));
+    yield cancel();
+  }
+  history.push('/drawer');
+  yield put(successAction(''));
+}
+function* toRegisterUser() {
+  yield delay(600);
+  yield put(loading(''));
+  history.push('/Register');
+  yield put(successAction(''));
 }
 function* requestRegisterUser({
   payload: { name, phone, email, password, confirmPassword },
@@ -57,6 +67,7 @@ function* requestRegisterUser({
       confirmPassword,
     });
     toast.success('cadastro efetuado com sucesso');
+    yield put(defineEmail(email));
     history.push('/Login');
     yield put(successAction(''));
   } catch (error) {
@@ -65,8 +76,61 @@ function* requestRegisterUser({
     yield put(failureAction(message));
   }
 }
+function* requestForgotPassword({ payload: { email } }) {
+  yield put(loading(''));
+  try {
+    yield call(api.post, `/user/forgotPassword`, {
+      email,
+    });
+    toast.success('e-mail enviado para redefinição de senha');
+    yield put(successAction(''));
+  } catch (error) {
+    const message = errorVerify(error);
+    toast.error(message);
+    yield put(failureAction(message));
+  }
+}
+function* requestRedefinePassword({
+  payload: { password, confirmPassword, token },
+}) {
+  yield put(loading(''));
+  try {
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    yield call(
+      api.put,
+      `/user/forgotPassword`,
+      {
+        newPassword: password,
+        confirmNewPassword: confirmPassword,
+      },
+      headers
+    );
+    toast.success('Senha redefinida');
+    yield put(successAction(''));
+  } catch (error) {
+    const message = errorVerify(error);
+    toast.error(message);
+    yield put(failureAction('senha não redefinida'));
+  } finally {
+    history.push('/login');
+  }
+}
+function* requestLogout() {
+  yield put(loading(''));
+  localStorage.clear();
+  yield put(successAction(''));
+  history.push('/login');
+}
 export default all([
-  takeLatest('@login/REQUEST_USER_EXIST', requestLoginExist),
-  takeLatest('@login/REQUEST_LOGIN', requestLogin),
-  takeLatest('@login/REQUEST_REGISTER_USER', requestRegisterUser),
+  takeLatest('@users/REQUEST_USER_EXIST', requestLoginExist),
+  takeLatest('@users/REQUEST_LOGIN', requestLogin),
+  takeLatest('@users/REQUEST_TO_REGISTER_USER', toRegisterUser),
+  takeLatest('@users/REQUEST_REGISTER_USER', requestRegisterUser),
+  takeLatest('@users/REQUEST_FORGOT_PASSWORD', requestForgotPassword),
+  takeLatest('@users/REQUEST_REDEFINE_PASSWORD', requestRedefinePassword),
+  takeLatest('@users/REQUEST_LOGOUT', requestLogout),
 ]);

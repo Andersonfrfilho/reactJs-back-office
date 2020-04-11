@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AreaHeader, AreaTitle, Title } from './styles';
-import avatar from '../../assets/images/avatar.png';
 
 export default function DrawerContentHeader({ name }) {
   return (

@@ -1,78 +1,77 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useQuery } from '../../services/history';
 import {
   Container,
   AreaForm,
   AreaLogo,
   AreaInputs,
   AreaButton,
-  AreaRegisterForgotedPassword,
-  AreaLink,
-  Link,
 } from './styles';
-import * as LoginActions from '../../store/modules/login/actions';
+import * as UsersActions from '../../store/modules/users/actions';
 import Logo from '../../components/Logo';
 import InputIcon from '../../components/InputIcon';
 import Button from '../../components/ButtonIcon';
-import Loader from '../../components/Loader';
 import { icons } from '../../styles';
 
-export default function Login() {
+export default function ForgotPassword() {
   const { loading, error, message } = useSelector(state => state.common);
-  const { users } = useSelector(state => state.login);
   const dispatch = useDispatch();
-  const [userState, setUserState] = useState('');
+  const [localMessage, setLocalMessage] = useState('');
+  const [passwordState, setPasswordState] = useState('');
+  const [confirmPasswordState, setConfirmPasswordState] = useState('');
   const [showFieldState, setShowFieldState] = useState(false);
+  const [showFieldStateTwo, setShowFieldStateTwo] = useState(false);
   const [transitionVisible, setTransitionVisible] = useState(false);
-  const inputUserRef = useRef('');
-  const inputPasswordRef = useRef('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState(null);
   useEffect(() => {
-    dispatch(LoginActions.requestUsersExist());
+    setTransitionVisible(true);
+    dispatch(UsersActions.requestUserExist());
   }, []); //eslint-disable-line
-  useEffect(() => {
-    localStorage.setItem('Modelo@users', JSON.stringify(users));
-  }, [users]); //eslint-disable-line
 
-  // Event handler utilizing useCallback ...
-  // ... so that reference never changes.
-  function functionForgetSenha() {
-    setTransitionVisible(!transitionVisible);
+  const query = useQuery();
+  function requestRedefinedPassword(passwordParam, confirmPasswordParam) {
+    const token = query.get('token');
+    dispatch(
+      UsersActions.requestRedefinePassword(
+        passwordParam,
+        confirmPasswordParam,
+        token
+      )
+    );
+    setPasswordState('');
+    setConfirmPasswordState('');
   }
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(LoginActions.addToUserRequest(userState, users));
-    setUserState('');
+
+  function verifyConfirmPassword(
+    password,
+    confirmPasswordParam,
+    messageParam = ''
+  ) {
+    setErrorConfirmPassword(password !== confirmPasswordParam);
+    setLocalMessage(password !== confirmPasswordParam ? messageParam : '');
   }
-  function verifyFunction(userParam) {}
-  console.tron.log(showFieldState);
   return (
-    <Container test={transitionVisible}>
-      <AreaForm onSubmit={e => handleSubmit(e)}>
+    <Container visible={transitionVisible}>
+      <AreaForm>
         <AreaLogo>
-          <Logo title="Login" message="uhul" />
+          <Logo
+            title="Redefinição de senha"
+            message={message || localMessage}
+            error={error || errorConfirmPassword}
+            image={false}
+          />
         </AreaLogo>
 
         <AreaInputs>
           <InputIcon
-            inputRef={inputUserRef}
-            placeholder="Digite seu usuário:"
-            error={error}
-            functionUpdatedValueRef={text => setUserState(text)}
-            functionOnEndingChange={() => verifyFunction(userState)}
-            icon={() => <icons.UserIcon size={18} />}
-            typeInput="text"
-          />
-          <InputIcon
-            inputRef={inputPasswordRef}
-            placeholder="Digite sua senha:"
-            error={error}
-            functionUpdatedValueRef={text => setUserState(text)}
-            functionOnEndingChange={() => verifyFunction(userState)}
+            placeholder="Nova senha:"
+            functionOnChange={password => setPasswordState(password)}
+            value={passwordState}
             functionOnClick={() => setShowFieldState(!showFieldState)}
-            disabled={false}
             typeInput={showFieldState ? 'text' : 'password'}
             button
+            disabled={false}
             icon={() =>
               showFieldState ? (
                 <icons.EyeOpenIcon size={18} />
@@ -81,27 +80,53 @@ export default function Login() {
               )
             }
           />
+          <InputIcon
+            placeholder="Confirme a senha:"
+            functionOnChange={password => setConfirmPasswordState(password)}
+            value={confirmPasswordState}
+            functionOnEndingChange={() =>
+              verifyConfirmPassword(
+                passwordState,
+                confirmPasswordState,
+                'Senhas divergentes.'
+              )
+            }
+            functionOnClick={() => setShowFieldStateTwo(!showFieldStateTwo)}
+            disabled={loading}
+            typeInput={showFieldStateTwo ? 'text' : 'password'}
+            button
+            error={errorConfirmPassword}
+            icon={() =>
+              showFieldStateTwo ? (
+                <icons.EyeOpenIcon size={18} />
+              ) : (
+                <icons.EyeClosedIcon size={18} />
+              )
+            }
+          />
         </AreaInputs>
         <AreaButton>
-          <Button loading={loading} />
+          <Button
+            loading={loading}
+            title="Enviar "
+            disabled={
+              errorConfirmPassword === null || errorConfirmPassword || loading
+            }
+            functionOnClick={() =>
+              requestRedefinedPassword(passwordState, confirmPasswordState)
+            }
+            icon={() =>
+              !(
+                passwordState === '' ||
+                errorConfirmPassword === null ||
+                errorConfirmPassword ||
+                loading
+              ) ? (
+                <icons.CorrectIcon size={18} />
+              ) : null
+            }
+          />
         </AreaButton>
-        <AreaRegisterForgotedPassword>
-          <AreaLink position>
-            <Button
-              onClick={() => functionForgetSenha()}
-              icon={() => <icons.UserForgotPassword size={18} />}
-              title=""
-            />
-          </AreaLink>
-          <AreaLink />
-          <AreaLink position={false}>
-            <Button
-              onClick={() => functionForgetSenha()}
-              icon={() => <icons.UserPlusIcon size={18} />}
-              title=""
-            />
-          </AreaLink>
-        </AreaRegisterForgotedPassword>
       </AreaForm>
     </Container>
   );

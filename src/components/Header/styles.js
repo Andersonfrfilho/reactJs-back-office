@@ -16,7 +16,7 @@ export const AreaHeader = styled.header`
   align-items: center;
   height: 58px;
   width: 100%;
-  background-color: ${colors.pickerOne};
+  background-color: ${colors.pickerNine};
   @media (min-width: 300px) {
     height: 38px;
   }
@@ -60,45 +60,40 @@ export const DrawerButton = styled.button`
   width: 40px;
   height: 40px;
   text-transform: uppercase;
-  margin-right:15px;
+  margin-right: 15px;
   background-color: transparent;
-  color: ${() => colors.white};
-  border:none;
-  /* border: 2px solid ${() => colors.lightsmaller}; */
+  color: ${colors.pickerNine};
+  border: none;
   border-radius: 40px;
-  /* transition: transform 300ms ease-in-out; */
   transition-duration: 0.7s;
-  /* box-shadow: 1px 3px 1px ${() => colors.boxShadownTransparend}; */
-
-
-    box-shadow: 0 0 5px ${() => colors.darknesTransparent};
+  box-shadow: 0 0 5px ${() => colors.darknesTransparent};
   &:hover {
     /* transform: translate(200px, 150px) rotate(20deg); */
     background-color: ${() => colors.darknesTransparent};
   }
   &:active {
     background-color: ${() => colors.whiteTransparent};
-    color:${() => colors.white};
+    color: ${colors.pickerNine};
   }
   @media (min-width: 300px) {
     width: 30px;
     height: 30px;
-    margin-right:5px;
+    margin-right: 5px;
   }
   @media (min-width: 400px) {
     width: 40px;
-  height: 40px;
-  margin-right:15px;
+    height: 40px;
+    margin-right: 15px;
   }
   @media (min-width: 800px) {
     width: 40px;
-  height: 40px;
-  margin-right:15px;
+    height: 40px;
+    margin-right: 15px;
   }
   @media (min-width: 1200px) {
     width: 40px;
-  height: 40px;
-  margin-right:15px;
+    height: 40px;
+    margin-right: 15px;
   }
 `;
 
@@ -134,7 +129,7 @@ export const AreaUserButtonExpand = styled.div`
   top: 0;
   position: absolute;
   height: ${({ open }) => (open ? 116 : 58)}px;
-  z-index: 2;
+  z-index: 0;
   cursor: pointer;
   @media (min-width: 300px) {
     width: 35px;
@@ -147,12 +142,12 @@ export const AreaUserButtonExpand = styled.div`
     height: ${({ open }) => (open ? 116 : 58)}px;
   }
   @media (min-width: 800px) {
-    width: 140px;
+    width: 100px;
     left: 100%-140px;
     height: ${({ open }) => (open ? 116 : 58)}px;
   }
   @media (min-width: 1200px) {
-    width: 210px;
+    width: 100px;
     left: 100%-210px;
     height: ${({ open }) => (open ? 116 : 58)}px;
   }
@@ -160,8 +155,9 @@ export const AreaUserButtonExpand = styled.div`
 export const AreaUserButon = styled.div`
   display: flex;
   visibility: ${({ exist }) => (exist ? 'visible' : 'hidden')};
-  height: 55px;
-  background-color: ${colors.pickerTwo};
+  height: 50px;
+  background-color: ${colors.pickerFive};
+  box-shadow: 0 0 0.1em ${() => colors.boxShadownTransparend};
   opacity: ${({ exist }) => (exist ? 1 : 0)};
   padding-left: 3px;
   padding-right: 3px;
@@ -176,42 +172,21 @@ export const AreaUserButon = styled.div`
     transition-property: visibility, opacity, background-color;
     transition-duration: 0.7s;
     p {
-      /* color: ${colors.pickerTwo}; */
       transition-duration: 0.7s;
-    }
-    svg {
-      /* color: ${colors.pickerTwo}; */
     }
   }
   @media (min-width: 300px) {
-    height: 38px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    background-color: ${colors.pickerOne};
+    height: 34px;
   }
   @media (min-width: 400px) {
-    height: 55px;
-    padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 3px;
-  background-color: ${colors.pickerTwo};
+    height: 54px;
   }
   @media (min-width: 800px) {
-    height: 55px;
-    padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 3px;
-  background-color: ${colors.pickerTwo};
+    height: 54px;
   }
   @media (min-width: 1200px) {
-    height: 55px;
-    padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 3px;
-  background-color: ${colors.pickerTwo};
+    height: 54px;
   }
-
 `;
 export const AreaPhoto = styled.div`
   display: flex;
@@ -268,6 +243,7 @@ export const AreaTitle = styled.div`
 `;
 export const Title = styled.p`
   color: ${() => colors.pickerEigth};
+  text-transform: capitalize;
 `;
 export const AreaIcon = styled.div`
   display: flex;
@@ -275,6 +251,8 @@ export const AreaIcon = styled.div`
   align-items: center;
   transition-duration: 0.7s;
   width: 40px;
+  height: 100%;
+
   @media (min-width: 300px) {
     display: ${({ exist }) => (exist ? 'flex' : 'none')};
     flex: 1;
@@ -295,10 +273,12 @@ export const AreaIcon = styled.div`
 export const IconDown = styled(FaAngleDown)`
   color: ${colors.pickerEigth};
   transition-duration: 0.7s;
+  font-size: ${() => metrics.fontSize + 18}px;
 `;
 export const IconUp = styled(FaAngleUp)`
   color: ${colors.pickerEigth};
   transition-duration: 0.7s;
+  font-size: ${() => metrics.fontSize + 18}px;
 `;
 export const IconBack = styled(FaArrowLeft)`
   color: ${colors.pickerEigth};

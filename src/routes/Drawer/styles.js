@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FaRegListAlt } from 'react-icons/fa';
 import { IoIosPersonAdd, IoIosPeople } from 'react-icons/io';
 import { colors } from '../../styles';
 
@@ -25,6 +24,7 @@ export const AreaDrawer = styled.div`
   flex-direction: column;
   transition-duration: 0.7s;
   overflow: hidden;
+  box-shadow: 0 0 0.1em ${() => colors.boxShadownTransparend};
   @media (min-width: 300px) {
     flex: ${({ open }) => (open ? 1 : 0)};
     min-width: ${({ open }) => (open ? 110 : 0)}px;
@@ -48,6 +48,7 @@ export const AreaContent = styled.div`
   flex: 9;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 0 0.1em ${() => colors.boxShadownTransparend};
 `;
 export const IconUserList = styled(IoIosPeople)`
   color: ${colors.pickerEigth};

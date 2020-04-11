@@ -1,7 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import ModalRegister from '../ModalRegister';
 import {
   AreaTitleSearchTable,
+  Modal,
   AreaItensTable,
   AreaSearchAdd,
   TitleList,
@@ -15,11 +17,24 @@ import {
   AreaIconAdd,
 } from './styles';
 
-export default function TableHeader() {
+export default function TableHeader({
+  title,
+  placeholderInputSearch,
+  functionOnChange,
+  valueSearch,
+  functionEndEditing,
+  functionOnClickClear,
+  functionModalClosed,
+  functionModalOpen,
+  visibleModal,
+}) {
   return (
     <AreaTitleSearchTable>
+      <Modal visible>
+        <ModalRegister />
+      </Modal>
       <AreaItensTable align="flex-start">
-        <TitleList>Editable Example</TitleList>
+        <TitleList>{title}</TitleList>
       </AreaItensTable>
       <AreaItensTable align="flex-end">
         <AreaSearchAdd>
@@ -27,13 +42,18 @@ export default function TableHeader() {
             <IconSearch />
           </AreaIcon>
           <AreaInputSearch>
-            <SearchInput placeholder="Pesquisar:" />
+            <SearchInput
+              placeholder={placeholderInputSearch}
+              onChange={text => functionOnChange(text.target.value)}
+              value={valueSearch}
+              onBlur={functionEndEditing}
+            />
           </AreaInputSearch>
-          <AreaIconClear>
+          <AreaIconClear onClick={functionOnClickClear}>
             <IconClean />
           </AreaIconClear>
         </AreaSearchAdd>
-        <AreaIconAdd>
+        <AreaIconAdd onClick={functionModalOpen}>
           <AreaIcon>
             <IconPlus />
           </AreaIcon>
@@ -42,3 +62,25 @@ export default function TableHeader() {
     </AreaTitleSearchTable>
   );
 }
+TableHeader.propTypes = {
+  title: PropTypes.string,
+  placeholderInputSearch: PropTypes.string,
+  functionOnChange: PropTypes.func,
+  valueSearch: PropTypes.string,
+  functionEndEditing: PropTypes.func,
+  functionOnClickClear: PropTypes.func,
+  functionModalClosed: PropTypes.func,
+  functionModalOpen: PropTypes.func,
+  visibleModal: PropTypes.bool,
+};
+TableHeader.defaultProps = {
+  title: 'título da tabela',
+  placeholderInputSearch: 'Pesquisar:',
+  functionOnChange: () => {},
+  valueSearch: '',
+  functionEndEditing: () => {},
+  functionOnClickClear: () => {},
+  functionModalClosed: () => {},
+  functionModalOpen: () => {},
+  visibleModal: false,
+};

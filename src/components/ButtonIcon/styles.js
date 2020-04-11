@@ -60,5 +60,6 @@ export const IconUser = styled(FaUserAlt)`
   }
 `;
 export const Title = styled.p`
+  padding-right: 5px;
   font-size: 16px;
 `;
