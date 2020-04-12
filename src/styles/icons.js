@@ -11,11 +11,22 @@ import {
   FaCheck,
   FaUsers,
   FaRegAddressBook,
+  FaTimes,
+  FaPlusCircle,
+  FaFonticons,
+  FaUserFriends,
 } from 'react-icons/fa';
 import colors from './colors';
 import metrics from './metrics';
 
+export const IconDefault = styled(FaFonticons)`
+  color: ${() => colors.dark};
+`;
 const UserIcon = styled(FaUserAlt)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
+const UserIconLastname = styled(FaUserFriends)`
   color: ${({ color = colors.pickerOne }) => color};
   font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
@@ -59,8 +70,17 @@ const UserContactIcon = styled(FaRegAddressBook)`
   color: ${({ color = colors.pickerOne }) => color};
   font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
+const ClosedTimesIcon = styled(FaTimes)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
+const PlusIconAdd = styled(FaPlusCircle)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
 export default {
   UserIcon,
+  IconDefault,
   EyeOpenIcon,
   EyeClosedIcon,
   UserPlusIcon,
@@ -71,4 +91,7 @@ export default {
   CorrectIcon,
   UserListIcon,
   UserContactIcon,
+  ClosedTimesIcon,
+  PlusIconAdd,
+  UserIconLastname,
 };

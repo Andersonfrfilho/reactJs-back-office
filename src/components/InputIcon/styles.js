@@ -6,7 +6,6 @@ import { colors, metrics } from '../../styles';
 export const AreaInputIcon = styled.div`
   display: flex;
   flex: 1;
-  background-color: #12ccad;
   flex-direction: row;
   height: 40px;
   padding-top: 10px;
@@ -23,9 +22,9 @@ export const AreaInput = styled.div`
   padding-right: 3px;
   padding-bottom: 3px;
   padding-top: 3px;
-  background-color: #ffaa;
 `;
 export const Input = styled.input`
+  flex: 1;
   width: 100%;
   font-size: ${metrics.fontSize + 4}px;
   border-width: 0px;
@@ -33,6 +32,7 @@ export const Input = styled.input`
   padding-left: 5px;
   color: ${colors.pickerFour};
   outline: none;
+
   :focus {
     border-color: none;
   }
@@ -52,6 +52,7 @@ export const Input = styled.input`
   }
 `;
 export const InputFormMask = styled(InputMask)`
+  flex: 1;
   width: 100%;
   font-size: ${metrics.fontSize + 4}px;
   border-width: 0px;
