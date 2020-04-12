@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { FaSistrix, FaTimes } from 'react-icons/fa';
 import { MdAddBox } from 'react-icons/md';
+import TextInput from 'react-autocomplete-input';
 import { colors } from '../../styles';
+import 'react-autocomplete-input/dist/bundle.css';
 
 export const AreaTitleSearchTable = styled.div`
   display: flex;
@@ -20,6 +22,15 @@ export const Modal = styled.div`
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  flex: 1;
+  body {
+    font-family: sans-serif;
+  }
+  input {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    width: 300px;
+  }
 `;
 
 export const AreaItensTable = styled.div`
@@ -57,7 +68,7 @@ export const AreaSearchAdd = styled.div`
   }
 
   @media (min-width: 300px) {
-    width: 100px;
+    width: 200px;
     transition-duration: 0.7s;
   }
   @media (min-width: 400px) {
@@ -94,7 +105,6 @@ export const AreaIconClear = styled.div`
 `;
 export const AreaIconAdd = styled.div`
   display: flex;
-  width: 30px;
   height: 30px;
   justify-content: center;
   align-items: center;
@@ -105,7 +115,7 @@ export const AreaIconAdd = styled.div`
   transition-duration: 0.7s;
   &:hover {
     cursor: pointer;
-    width: 30px;
+    width: 40px;
     height: 30px;
     background-color: ${colors.pickerEigth};
   }
@@ -113,32 +123,37 @@ export const AreaIconAdd = styled.div`
     background-color: ${colors.dark};
   }
   @media (min-width: 300px) {
-    width: 15px;
-    transition-duration: 0.7s;
+    width: 40px;
   }
   @media (min-width: 400px) {
-    width: 30px;
+    width: 40px;
   }
   @media (min-width: 800px) {
-    width: 30px;
+    width: 40px;
   }
   @media (min-width: 1200px) {
-    width: 30px;
+    width: 40px;
   }
 `;
 export const AreaInputSearch = styled.div`
   flex: 8;
 `;
-export const SearchInput = styled.input`
+export const SearchInput = styled(TextInput).attrs((/* props */) => ({
+  rows: 1,
+}))`
   width: 100%;
   height: 100%;
+  padding-top: 5px;
   padding-left: 5px;
   border: none;
   background-color: transparent;
   font-size: 18px;
   color: ${colors.dark};
+  resize: none;
 `;
 
 export const IconSearch = styled(FaSistrix)``;
 export const IconClean = styled(FaTimes)``;
-export const IconPlus = styled(MdAddBox)``;
+export const IconPlus = styled(MdAddBox)`
+  font-size: 18px;
+`;

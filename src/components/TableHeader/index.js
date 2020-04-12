@@ -27,11 +27,12 @@ export default function TableHeader({
   functionModalClosed,
   functionModalOpen,
   visibleModal,
+  options,
 }) {
   return (
     <AreaTitleSearchTable>
-      <Modal visible>
-        <ModalRegister />
+      <Modal visible={visibleModal}>
+        <ModalRegister functionOnClick={() => functionModalClosed()} />
       </Modal>
       <AreaItensTable align="flex-start">
         <TitleList>{title}</TitleList>
@@ -43,10 +44,12 @@ export default function TableHeader({
           </AreaIcon>
           <AreaInputSearch>
             <SearchInput
+              options={options}
               placeholder={placeholderInputSearch}
-              onChange={text => functionOnChange(text.target.value)}
+              onChange={text => functionOnChange(text)}
               value={valueSearch}
               onBlur={functionEndEditing}
+              trigger=""
             />
           </AreaInputSearch>
           <AreaIconClear onClick={functionOnClickClear}>
@@ -72,6 +75,7 @@ TableHeader.propTypes = {
   functionModalClosed: PropTypes.func,
   functionModalOpen: PropTypes.func,
   visibleModal: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.string),
 };
 TableHeader.defaultProps = {
   title: 'título da tabela',
@@ -83,4 +87,5 @@ TableHeader.defaultProps = {
   functionModalClosed: () => {},
   functionModalOpen: () => {},
   visibleModal: false,
+  options: [''],
 };

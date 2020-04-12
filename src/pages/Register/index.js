@@ -18,7 +18,7 @@ import Loader from '../../components/Loader';
 import { icons } from '../../styles';
 
 export default function Register() {
-  const { loading, error, message } = useSelector(state => state.common);
+  const { loading, error, message } = useSelector(state => state.commons);
   const dispatch = useDispatch();
   const [nameState, setNameState] = useState('');
   const [localMessage, setLocalMessage] = useState('');

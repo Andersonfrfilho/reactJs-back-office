@@ -9,7 +9,7 @@ import Panel from './Drawer';
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/" render={() => <Redirect to="/forgotPassword" />} />
+      <Route exact path="/" render={() => <Redirect to="/drawer" />} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/forgotPassword" component={ForgotPassword} />

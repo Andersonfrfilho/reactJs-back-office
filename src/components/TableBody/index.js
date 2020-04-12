@@ -39,7 +39,7 @@ export default function TableBody({ infoTable }) {
         </Column>
         {infoTable[0].options.map(option => (
           <Column flex={option.length} header>
-            <AreaInfo align={option.align}>
+            <AreaInfo align={option.align} pointer>
               <Info>{option.name}</Info>
               {option.type === 'number'
                 ? functionSelectFilterNumber(option.select)
@@ -49,7 +49,7 @@ export default function TableBody({ infoTable }) {
         ))}
       </Row>
       {infoTable.map((element, index) => {
-        const { id, name, email, fone, date } = element;
+        const { name, email, lastname } = element;
         if (index !== 0) {
           return (
             <Row key={index.toString()}>
@@ -66,29 +66,16 @@ export default function TableBody({ infoTable }) {
                   </AreaIcons>
                 </AreaActionsIcons>
               </Column>
-              <Column flex={1}>
-                <AreaInfo align="center">
-                  <Info>{id}</Info>
-                </AreaInfo>
-              </Column>
-              <Column flex={2}>
+              <Column flex={3}>
                 <AreaTable>
-                  <Info>{name}</Info>
+                  <Info>{`${name.charAt(0).toUpperCase() +
+                    name.slice(1)} ${lastname.charAt(0).toUpperCase() +
+                    lastname.slice(1)}`}</Info>
                 </AreaTable>
               </Column>
               <Column flex={3}>
                 <AreaTable>
                   <Info>{email}</Info>
-                </AreaTable>
-              </Column>
-              <Column flex={2}>
-                <AreaTable>
-                  <Info>{fone}</Info>
-                </AreaTable>
-              </Column>
-              <Column flex={2}>
-                <AreaTable>
-                  <Info>{date}</Info>
                 </AreaTable>
               </Column>
             </Row>
@@ -105,25 +92,30 @@ TableBody.propTypes = {
 TableBody.defaultProps = {
   infoTable: [
     {
-      id: 'Código',
-      name: 'Nome',
-      email: 'E-mail',
-      fone: 'Telefone',
-      date: 'Data',
+      options: [
+        {
+          name: 'Nome',
+          type: 'alpha',
+          select: false,
+          length: 3,
+          align: 'flex-start',
+        },
+        {
+          name: 'E-mail',
+          type: 'alpha',
+          select: false,
+          length: 3,
+          align: 'flex-start',
+        },
+      ],
     },
     {
-      id: '1',
       name: 'Anderson',
       email: 'Anderson@gmail.com',
-      fone: '(16) 9 9305-6772',
-      date: '05/07/1999',
     },
     {
-      id: '1',
       name: 'Andréia',
       email: 'Andreia@gmail.com',
-      fone: '(16) 9 9191-1396',
-      date: '05/07/1945',
     },
   ],
 };

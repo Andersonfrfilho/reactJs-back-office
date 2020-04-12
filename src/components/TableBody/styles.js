@@ -62,7 +62,7 @@ export const AreaInfo = styled.div`
   /* &:focus-within {
   } */
   &:hover {
-    cursor: pointer;
+    cursor: ${({ pointer }) => (pointer ? 'pointer' : 'normal')};
     svg {
       visibility: visible;
     }
@@ -70,6 +70,12 @@ export const AreaInfo = styled.div`
 `;
 export const Info = styled.p`
   overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 export const IconEdit = styled(MdEdit)`
   transition-duration: 0.3s;

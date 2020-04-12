@@ -26,7 +26,16 @@ function* requestLogin({ payload: { email, password } }) {
     }
     localStorage.setItem('populus@token', token);
     localStorage.setItem('populus@user', JSON.stringify(user));
-    yield put(defineInformationUser(user.name));
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const {
+      data: { contacts },
+    } = yield call(api.get, `/user`, headers);
+    localStorage.setItem('populus@contacts', JSON.stringify(contacts));
+    yield put(defineInformationUser(user.name, contacts));
     toast.success('login efetuado com sucesso');
     history.push('/drawer');
     yield put(successAction(''));
@@ -38,11 +47,52 @@ function* requestLogin({ payload: { email, password } }) {
 }
 function* requestLoginExist() {
   yield put(loading(''));
-  const tokenExist = localStorage.getItem('populus@token');
-  if (tokenExist === null) {
+  const token = localStorage.getItem('populus@token');
+  if (token === null || token === '') {
     yield put(breakAction(''));
     yield cancel();
   }
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const {
+    data: { contacts },
+  } = yield call(api.get, `/user`, headers);
+  let user = localStorage.setItem('populus@user');
+  user = JSON.parse(user);
+  const dataNames = [];
+  const dataInfo = [
+    {
+      options: [
+        {
+          name: 'Nome',
+          type: 'alpha',
+          select: false,
+          length: 3,
+          align: 'flex-start',
+        },
+        {
+          name: 'E-mail',
+          type: 'alpha',
+          select: false,
+          length: 3,
+          align: 'flex-start',
+        },
+      ],
+    },
+  ];
+  contacts.forEach(contact => {
+    dataInfo.push(contact);
+    dataNames.push(`${contact.name} ${contact.lastname}`);
+  });
+  yield put(defineInformationUser(user.name, dataInfo, dataNames));
+  toast.success('login efetuado com sucesso');
+  history.push('/drawer');
+  yield put(successAction(''));
+
+  yield put();
   history.push('/drawer');
   yield put(successAction(''));
 }
@@ -57,9 +107,7 @@ function* requestRegisterUser({
 }) {
   yield put(loading(''));
   try {
-    const {
-      data: { token },
-    } = yield call(api.post, `/users`, {
+    yield call(api.post, `/users`, {
       name,
       phone,
       email,
@@ -95,6 +143,7 @@ function* requestRedefinePassword({
 }) {
   yield put(loading(''));
   try {
+    localStorage.clear();
     const headers = {
       headers: {
         Authorization: `Bearer ${token}`,

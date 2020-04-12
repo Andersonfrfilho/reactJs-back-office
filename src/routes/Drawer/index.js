@@ -24,7 +24,7 @@ export default function Panel(props) {
     match: { path },
   } = props;
   const dispatch = useDispatch();
-  const { name } = useSelector(state => state.contact);
+  const { name } = useSelector(state => state.contacts);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openUser, setOpenUser] = useState(false);
   const [drawer, setDrawer] = useState({
@@ -118,7 +118,6 @@ export default function Panel(props) {
     };
     setDrawer(newDrawer);
   }, [name]); //eslint-disable-line
-
   return (
     <Router>
       <AreaPanel>

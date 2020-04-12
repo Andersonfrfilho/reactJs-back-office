@@ -1,7 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { FiLoader } from 'react-icons/fi';
-import { FaSpinner } from 'react-icons/fa';
+import styled from 'styled-components';
 import { colors } from '../../styles';
 
 export const AreaModal = styled.div`

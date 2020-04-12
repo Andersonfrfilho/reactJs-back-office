@@ -15,7 +15,7 @@ import Button from '../../components/ButtonIcon';
 import { icons } from '../../styles';
 
 export default function ForgotPassword() {
-  const { loading, error, message } = useSelector(state => state.common);
+  const { loading, error, message } = useSelector(state => state.commons);
   const dispatch = useDispatch();
   const [localMessage, setLocalMessage] = useState('');
   const [passwordState, setPasswordState] = useState('');

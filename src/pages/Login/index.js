@@ -17,7 +17,7 @@ import Button from '../../components/ButtonIcon';
 import { icons } from '../../styles';
 
 export default function Login() {
-  const { loading, error, message } = useSelector(state => state.common);
+  const { loading, error, message } = useSelector(state => state.commons);
   const { email } = useSelector(state => state.users);
   const dispatch = useDispatch();
   const [emailState, setEmailState] = useState('');
@@ -33,9 +33,6 @@ export default function Login() {
       setEmailState(email);
     }
   }, []); //eslint-disable-line
-
-  // Event handler utilizing useCallback ...
-  // ... so that reference never changes.
   function forgetSenha(stateParam) {
     setForgotPassword(stateParam);
   }

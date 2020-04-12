@@ -25,7 +25,6 @@ export function verifyName(name) {
   return false;
 }
 export function verifyPhone(phone = '00000000') {
-  console.tron.log(phone);
   if (phone === '0000000') {
     return true;
   }
