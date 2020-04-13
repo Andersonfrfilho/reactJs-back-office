@@ -15,12 +15,14 @@ import {
   FaPlusCircle,
   FaFonticons,
   FaUserFriends,
+  FaInfoCircle,
 } from 'react-icons/fa';
 import colors from './colors';
 import metrics from './metrics';
 
 export const IconDefault = styled(FaFonticons)`
   color: ${() => colors.dark};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
 const UserIcon = styled(FaUserAlt)`
   color: ${({ color = colors.pickerOne }) => color};
@@ -78,6 +80,10 @@ const PlusIconAdd = styled(FaPlusCircle)`
   color: ${({ color = colors.pickerOne }) => color};
   font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
 `;
+export const IconInformation = styled(FaInfoCircle)`
+  color: ${({ color = colors.pickerOne }) => color};
+  font-size: ${({ aditional = 6 }) => metrics.fontSize + aditional}px;
+`;
 export default {
   UserIcon,
   IconDefault,
@@ -94,4 +100,5 @@ export default {
   ClosedTimesIcon,
   PlusIconAdd,
   UserIconLastname,
+  IconInformation,
 };

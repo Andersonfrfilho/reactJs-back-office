@@ -61,13 +61,14 @@ export default function TableHeader({
   // Modal : Phone : field
   titleInputPhoneNumberModal,
   typeInputPhoneNumberModal,
+  inputMaskPhoneNumberModal,
   typeInputPhoneNumberFormatModal,
   placeholderInputPhoneNumberModal,
   disabledInputPhoneNumberModal,
   iconInputPhoneNumberModal,
   functionOnChangeInputPhoneNumberModal,
   functionOnEndingChangePhoneNumberModal,
-  arrayPhonesNumberModal,
+  arrayPhonesModal,
   // Modal : Phone : field
   titleInputPhoneDescriptionModal,
   typeInputPhoneDescriptionModal,
@@ -79,6 +80,75 @@ export default function TableHeader({
   functionOnEndingChangePhoneDescriptionModal,
   errorInputPhoneDescriptionModal,
   valueInputPhoneDescriptionModal,
+  // Modal : fields :
+  areaInputAddressesTitleModal,
+  functionOnClickAddAddressesModal,
+  functionOnClickRemoveAddressesModal,
+  // Modal : fields: register :zipCode
+  titleInputAddressesZipCodeModal,
+  typeInputMaskAddressesZipCodeModal,
+  typeInputAddressesZipCodeFormatModal,
+  placeholderAddressesZipCodeModal,
+  disabledInputAddressesesZipCodeModal,
+  iconInputAddressesZipCodeModal,
+  inputMaskAddressesZipCodeModal,
+  functionOnChangeInputAddressesZipCodeModal,
+  functionOnEndingChangeAddressesZipCodeModal,
+  // Modal :fields : register :number
+  titleInputAddressesNumberModal,
+  typeInputMaskAddressesNumberModal,
+  typeInputAddressesNumberFormatModal,
+  placeholderAddressesNumberModal,
+  disabledInputAddressesesNumberModal,
+  iconInputAddressesNumberModal,
+  functionOnChangeInputAddressesNumberModal,
+  functionOnEndingChangeAddressesNumberModal,
+  // Modal :fields : register :name
+  titleInputAddressesNameModal,
+  typeInputMaskAddressesNameModal,
+  typeInputAddressesNameFormatModal,
+  placeholderAddressesNameModal,
+  disabledInputAddressesesNameModal,
+  iconInputAddressesNameModal,
+  functionOnChangeInputAddressesNameModal,
+  functionOnEndingChangeAddressesNameModal,
+  // Modal :fields : register :beihoord
+  titleInputAddressesNeighborhoodModal,
+  typeInputMaskAddressesNeighborhoodModal,
+  typeInputAddressesNeighborhoodFormatModal,
+  placeholderAddressesNeighborhoodModal,
+  disabledInputAddressesesNeighborhoodModal,
+  iconInputAddressesNeighborhoodModal,
+  functionOnChangeInputAddressesNeighborhoodModal,
+  functionOnEndingChangeAddressesNeighborhoodModal,
+  // Modal :fields : register :city
+  titleInputAddressesCityModal,
+  typeInputMaskAddressesCityModal,
+  typeInputAddressesCityFormatModal,
+  placeholderAddressesCityModal,
+  disabledInputAddressesesCityModal,
+  iconInputAddressesCityModal,
+  functionOnChangeInputAddressesCityModal,
+  functionOnEndingChangeAddressesCityModal,
+  // Modal :fields : register :state
+  titleInputAddressesStateModal,
+  typeInputMaskAddressesStateModal,
+  typeInputAddressesStateFormatModal,
+  placeholderAddressesStateModal,
+  disabledInputAddressesesStateModal,
+  iconInputAddressesStateModal,
+  functionOnChangeInputAddressesStateModal,
+  functionOnEndingChangeAddressesStateModal,
+  // Modal :fields : register :state
+  titleInputAddressesCountryModal,
+  typeInputMaskAddressesCountryModal,
+  typeInputAddressesCountryFormatModal,
+  placeholderAddressesCountryModal,
+  disabledInputAddressesesCountryModal,
+  iconInputAddressesCountryModal,
+  functionOnChangeInputAddressesCountryModal,
+  functionOnEndingChangeAddressesCountryModal,
+
   //= ============
   placeholderInputSearch,
   functionOnChange,
@@ -135,6 +205,7 @@ export default function TableHeader({
           functionOnClickRemovePhone={functionOnClickRemovePhoneModal}
           // fields :number
           titleInputPhoneNumber={titleInputPhoneNumberModal}
+          inputMaskPhoneNumber={inputMaskPhoneNumberModal}
           typeInputPhoneNumber={typeInputPhoneNumberModal}
           typeInputPhoneNumberFormat={typeInputPhoneNumberFormatModal}
           placeholderInputPhoneNumber={placeholderInputPhoneNumberModal}
@@ -146,7 +217,8 @@ export default function TableHeader({
           functionOnEndingPhoneNumberChange={
             functionOnEndingChangePhoneNumberModal
           }
-          arrayPhonesNumber={arrayPhonesNumberModal}
+          // arrayPhone
+          arrayPhones={arrayPhonesModal}
           // field :description
           // fields
           titleInputPhoneDescription={titleInputPhoneDescriptionModal}
@@ -165,6 +237,111 @@ export default function TableHeader({
           }
           valueInputPhoneDescription={valueInputPhoneDescriptionModal}
           errorInputPhoneDescription={errorInputPhoneDescriptionModal}
+          // field addresses
+          // addresses
+          areaInputAddressesTitle={areaInputAddressesTitleModal}
+          functionOnClickAddAddresses={functionOnClickAddAddressesModal}
+          functionOnClickRemoveAddresses={functionOnClickRemoveAddressesModal}
+          // fields : addresses : zipcode
+          titleInputAddressesZipCode={titleInputAddressesZipCodeModal}
+          typeInputAddressesZipCode={typeInputMaskAddressesZipCodeModal}
+          typeInputAddressesZipCodeFormat={typeInputAddressesZipCodeFormatModal}
+          placeholderInputAddressesZipCode={placeholderAddressesZipCodeModal}
+          disabledInputAddressesZipCode={disabledInputAddressesesZipCodeModal}
+          iconInputAddressesZipCode={iconInputAddressesZipCodeModal}
+          inputMaskAddressesZipCode={inputMaskAddressesZipCodeModal}
+          functionOnChangeInputAddressesZipCode={
+            functionOnChangeInputAddressesZipCodeModal
+          }
+          functionOnEndingChangeAddressesZipCode={
+            functionOnEndingChangeAddressesZipCodeModal
+          }
+          // fields : addresses : number
+          titleInputAddressesNumber={titleInputAddressesNumberModal}
+          typeInputAddressesNumber={typeInputMaskAddressesNumberModal}
+          typeInputAddressesNumberFormat={typeInputAddressesNumberFormatModal}
+          placeholderInputAddressesNumber={placeholderAddressesNumberModal}
+          disabledInputAddressesNumber={disabledInputAddressesesNumberModal}
+          iconInputAddressesNumber={iconInputAddressesNumberModal}
+          functionOnChangeInputAddressesNumber={
+            functionOnChangeInputAddressesNumberModal
+          }
+          functionOnEndingChangeAddressesNumber={
+            functionOnEndingChangeAddressesNumberModal
+          }
+          // fields : addresses : name
+          titleInputAddressesName={titleInputAddressesNameModal}
+          typeInputAddressesName={typeInputMaskAddressesNameModal}
+          typeInputAddressesNameFormat={typeInputAddressesNameFormatModal}
+          placeholderInputAddressesName={placeholderAddressesNameModal}
+          disabledInputAddressesName={disabledInputAddressesesNameModal}
+          iconInputAddressesName={iconInputAddressesNameModal}
+          functionOnChangeInputAddressesName={
+            functionOnChangeInputAddressesNameModal
+          }
+          functionOnEndingChangeAddressesName={
+            functionOnEndingChangeAddressesNameModal
+          }
+          // fields : addresses : neighborhood
+          titleInputAddressesNeighborhood={titleInputAddressesNeighborhoodModal}
+          typeInputAddressesNeighborhood={
+            typeInputMaskAddressesNeighborhoodModal
+          }
+          typeInputAddressesNeighborhoodFormat={
+            typeInputAddressesNeighborhoodFormatModal
+          }
+          placeholderInputAddressesNeighborhood={
+            placeholderAddressesNeighborhoodModal
+          }
+          disabledInputAddressesNeighborhood={
+            disabledInputAddressesesNeighborhoodModal
+          }
+          iconInputAddressesNeighborhood={iconInputAddressesNeighborhoodModal}
+          functionOnChangeInputAddressesNeighborhood={
+            functionOnChangeInputAddressesNeighborhoodModal
+          }
+          functionOnEndingChangeAddressesNeighborhood={
+            functionOnEndingChangeAddressesNeighborhoodModal
+          }
+          // fields : addresses : city
+          titleInputAddressesCity={titleInputAddressesCityModal}
+          typeInputAddressesCity={typeInputMaskAddressesCityModal}
+          typeInputAddressesCityFormat={typeInputAddressesCityFormatModal}
+          placeholderInputAddressesCity={placeholderAddressesCityModal}
+          disabledInputAddressesCity={disabledInputAddressesesCityModal}
+          iconInputAddressesCity={iconInputAddressesCityModal}
+          functionOnChangeInputAddressesCity={
+            functionOnChangeInputAddressesCityModal
+          }
+          functionOnEndingChangeAddressesCity={
+            functionOnEndingChangeAddressesCityModal
+          }
+          // fields : addresses : state
+          titleInputAddressesState={titleInputAddressesStateModal}
+          typeInputAddressesState={typeInputMaskAddressesStateModal}
+          typeInputAddressesStateFormat={typeInputAddressesStateFormatModal}
+          placeholderInputAddressesState={placeholderAddressesStateModal}
+          disabledInputAddressesState={disabledInputAddressesesStateModal}
+          iconInputAddressesState={iconInputAddressesStateModal}
+          functionOnChangeInputAddressesState={
+            functionOnChangeInputAddressesStateModal
+          }
+          functionOnEndingChangeAddressesState={
+            functionOnEndingChangeAddressesStateModal
+          }
+          // fields : addresses : country
+          titleInputAddressesCountry={titleInputAddressesCountryModal}
+          typeInputAddressesCountry={typeInputMaskAddressesCountryModal}
+          typeInputAddressesCountryFormat={typeInputAddressesCountryFormatModal}
+          placeholderInputAddressesCountry={placeholderAddressesCountryModal}
+          disabledInputAddressesCountry={disabledInputAddressesesCountryModal}
+          iconInputAddressesCountry={iconInputAddressesCountryModal}
+          functionOnChangeInputAddressesCountry={
+            functionOnChangeInputAddressesCountryModal
+          }
+          functionOnEndingChangeAddressesCountry={
+            functionOnEndingChangeAddressesCountryModal
+          }
         />
       </Modal>
       <AreaItensTable align="flex-start">
@@ -252,11 +429,12 @@ TableHeader.propTypes = {
   titleInputPhoneNumberModal: PropTypes.string,
   typeInputPhoneNumberModal: PropTypes.string,
   typeInputPhoneNumberFormatModal: PropTypes.string,
+  inputMaskPhoneNumberModal: PropTypes.string,
   placeholderInputPhoneNumberModal: PropTypes.string,
   disabledInputPhoneNumberModal: PropTypes.bool,
   functionOnChangeInputPhoneNumberModal: PropTypes.func,
   functionOnEndingChangePhoneNumberModal: PropTypes.func,
-  arrayPhonesNumberModal: PropTypes.arrayOf(PropTypes.object),
+  arrayPhonesModal: PropTypes.arrayOf(PropTypes.object),
   iconInputPhoneNumberModal: PropTypes.func,
   // inputs-phone
   titleInputPhoneDescriptionModal: PropTypes.string,
@@ -269,6 +447,74 @@ TableHeader.propTypes = {
   valueInputPhoneDescriptionModal: PropTypes.string,
   errorInputPhoneDescriptionModal: PropTypes.bool,
   iconInputPhoneDescriptionModal: PropTypes.func,
+  // MOdal : address : fields
+  areaInputAddressesTitleModal: PropTypes.string,
+  functionOnClickAddAddressesModal: PropTypes.func,
+  functionOnClickRemoveAddressesModal: PropTypes.func,
+  // Modal : address : fields : zipcode
+  titleInputAddressesZipCodeModal: PropTypes.string,
+  typeInputMaskAddressesZipCodeModal: PropTypes.string,
+  typeInputAddressesZipCodeFormatModal: PropTypes.string,
+  placeholderAddressesZipCodeModal: PropTypes.string,
+  disabledInputAddressesesZipCodeModal: PropTypes.bool,
+  iconInputAddressesZipCodeModal: PropTypes.func,
+  inputMaskAddressesZipCodeModal: PropTypes.string,
+  functionOnChangeInputAddressesZipCodeModal: PropTypes.func,
+  functionOnEndingChangeAddressesZipCodeModal: PropTypes.func,
+  // Modal : addresses : fields : Number
+  titleInputAddressesNumberModal: PropTypes.string,
+  typeInputMaskAddressesNumberModal: PropTypes.string,
+  typeInputAddressesNumberFormatModal: PropTypes.string,
+  placeholderAddressesNumberModal: PropTypes.string,
+  disabledInputAddressesesNumberModal: PropTypes.bool,
+  iconInputAddressesNumberModal: PropTypes.func,
+  functionOnChangeInputAddressesNumberModal: PropTypes.func,
+  functionOnEndingChangeAddressesNumberModal: PropTypes.func,
+  // Modal : addresses : fields : Name
+  titleInputAddressesNameModal: PropTypes.string,
+  typeInputMaskAddressesNameModal: PropTypes.string,
+  typeInputAddressesNameFormatModal: PropTypes.string,
+  placeholderAddressesNameModal: PropTypes.string,
+  disabledInputAddressesesNameModal: PropTypes.bool,
+  iconInputAddressesNameModal: PropTypes.func,
+  functionOnChangeInputAddressesNameModal: PropTypes.func,
+  functionOnEndingChangeAddressesNameModal: PropTypes.func,
+  // Modal : addresses : fields : Neightbor
+  titleInputAddressesNeighborhoodModal: PropTypes.string,
+  typeInputMaskAddressesNeighborhoodModal: PropTypes.string,
+  typeInputAddressesNeighborhoodFormatModal: PropTypes.string,
+  placeholderAddressesNeighborhoodModal: PropTypes.string,
+  disabledInputAddressesesNeighborhoodModal: PropTypes.bool,
+  iconInputAddressesNeighborhoodModal: PropTypes.func,
+  functionOnChangeInputAddressesNeighborhoodModal: PropTypes.func,
+  functionOnEndingChangeAddressesNeighborhoodModal: PropTypes.func,
+  // Modal : addresses : fields : city
+  titleInputAddressesCityModal: PropTypes.string,
+  typeInputMaskAddressesCityModal: PropTypes.string,
+  typeInputAddressesCityFormatModal: PropTypes.string,
+  placeholderAddressesCityModal: PropTypes.string,
+  disabledInputAddressesesCityModal: PropTypes.bool,
+  iconInputAddressesCityModal: PropTypes.func,
+  functionOnChangeInputAddressesCityModal: PropTypes.func,
+  functionOnEndingChangeAddressesCityModal: PropTypes.func,
+  // Modal : addresses : fields : state
+  titleInputAddressesStateModal: PropTypes.string,
+  typeInputMaskAddressesStateModal: PropTypes.string,
+  typeInputAddressesStateFormatModal: PropTypes.string,
+  placeholderAddressesStateModal: PropTypes.string,
+  disabledInputAddressesesStateModal: PropTypes.bool,
+  iconInputAddressesStateModal: PropTypes.func,
+  functionOnChangeInputAddressesStateModal: PropTypes.func,
+  functionOnEndingChangeAddressesStateModal: PropTypes.func,
+  // Modal : addresses : fields : country
+  titleInputAddressesCountryModal: PropTypes.string,
+  typeInputMaskAddressesCountryModal: PropTypes.string,
+  typeInputAddressesCountryFormatModal: PropTypes.string,
+  placeholderAddressesCountryModal: PropTypes.string,
+  disabledInputAddressesesCountryModal: PropTypes.bool,
+  iconInputAddressesCountryModal: PropTypes.func,
+  functionOnChangeInputAddressesCountryModal: PropTypes.func,
+  functionOnEndingChangeAddressesCountryModal: PropTypes.func,
 };
 TableHeader.defaultProps = {
   title: 'título da tabela',
@@ -323,14 +569,17 @@ TableHeader.defaultProps = {
   titleInputPhoneNumberModal: 'title input e-mail',
   typeInputPhoneNumberModal: 'text',
   typeInputPhoneNumberFormatModal: 'text',
+  inputMaskPhoneNumberModal: '+99 (999) 9 9999-9999',
   placeholderInputPhoneNumberModal: 'placeholder e-mail:',
   disabledInputPhoneNumberModal: true,
   functionOnChangeInputPhoneNumberModal: () => {},
   functionOnEndingChangePhoneNumberModal: () => {},
-  arrayPhonesNumberModal: [
+  arrayPhonesModal: [
     {
-      value: '',
-      error: false,
+      numberValue: '',
+      descriptionValue: '',
+      numberError: false,
+      descriptionError: false,
     },
   ],
   iconInputPhoneNumberModal: () => <icons.IconDefault />,
@@ -345,4 +594,73 @@ TableHeader.defaultProps = {
   valueInputPhoneDescriptionModal: '',
   errorInputPhoneDescriptionModal: false,
   iconInputPhoneDescriptionModal: () => <icons.IconDefault />,
+  // Addrress
+  areaInputAddressesTitleModal: 'Area Input Title Addresses',
+  functionOnClickAddAddressesModal: () => {},
+  functionOnClickRemoveAddressesModal: () => {},
+  // Address : modal : fields : zipcode
+  // Modal : address : fields : zipcode
+  titleInputAddressesZipCodeModal: 'title input zipcode',
+  typeInputMaskAddressesZipCodeModal: 'mask',
+  typeInputAddressesZipCodeFormatModal: 'text',
+  placeholderAddressesZipCodeModal: 'palceholder input zipcode',
+  disabledInputAddressesesZipCodeModal: true,
+  iconInputAddressesZipCodeModal: () => <icons.IconDefault />,
+  inputMaskAddressesZipCodeModal: '99.999-999',
+  functionOnChangeInputAddressesZipCodeModal: () => {},
+  functionOnEndingChangeAddressesZipCodeModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesNumberModal: 'title input number',
+  typeInputMaskAddressesNumberModal: 'text',
+  typeInputAddressesNumberFormatModal: 'text',
+  placeholderAddressesNumberModal: 'placeolder input number',
+  disabledInputAddressesesNumberModal: true,
+  iconInputAddressesNumberModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesNumberModal: () => {},
+  functionOnEndingChangeAddressesNumberModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesNameModal: 'title input Name',
+  typeInputMaskAddressesNameModal: 'text',
+  typeInputAddressesNameFormatModal: 'text',
+  placeholderAddressesNameModal: 'placeolder input Name',
+  disabledInputAddressesesNameModal: true,
+  iconInputAddressesNameModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesNameModal: () => {},
+  functionOnEndingChangeAddressesNameModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesNeighborhoodModal: 'title input Neighborhood',
+  typeInputMaskAddressesNeighborhoodModal: 'text',
+  typeInputAddressesNeighborhoodFormatModal: 'text',
+  placeholderAddressesNeighborhoodModal: 'placeolder input Neighborhood',
+  disabledInputAddressesesNeighborhoodModal: true,
+  iconInputAddressesNeighborhoodModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesNeighborhoodModal: () => {},
+  functionOnEndingChangeAddressesNeighborhoodModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesCityModal: 'title input City',
+  typeInputMaskAddressesCityModal: 'text',
+  typeInputAddressesCityFormatModal: 'text',
+  placeholderAddressesCityModal: 'placeolder input City',
+  disabledInputAddressesesCityModal: true,
+  iconInputAddressesCityModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesCityModal: () => {},
+  functionOnEndingChangeAddressesCityModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesStateModal: 'title input State',
+  typeInputMaskAddressesStateModal: 'text',
+  typeInputAddressesStateFormatModal: 'text',
+  placeholderAddressesStateModal: 'placeolder input State',
+  disabledInputAddressesesStateModal: true,
+  iconInputAddressesStateModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesStateModal: () => {},
+  functionOnEndingChangeAddressesStateModal: () => {},
+  // Modal : address : fields : number
+  titleInputAddressesCountryModal: 'title input Country',
+  typeInputMaskAddressesCountryModal: 'text',
+  typeInputAddressesCountryFormatModal: 'text',
+  placeholderAddressesCountryModal: 'placeolder input Country',
+  disabledInputAddressesesCountryModal: true,
+  iconInputAddressesCountryModal: () => <icons.IconDefault />,
+  functionOnChangeInputAddressesCountryModal: () => {},
+  functionOnEndingChangeAddressesCountryModal: () => {},
 };

@@ -72,6 +72,7 @@ InputIcon.propTypes = {
   inputMask: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.func,
+  width: PropTypes.string,
 };
 InputIcon.defaultProps = {
   typeInput: 'button',
@@ -86,4 +87,5 @@ InputIcon.defaultProps = {
   inputMask: '99/99/99',
   placeholder: 'palceholder input:',
   icon: () => <IconDefault />,
+  width: '100%',
 };

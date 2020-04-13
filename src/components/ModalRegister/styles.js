@@ -69,10 +69,21 @@ export const AreaInputs = styled.div`
 `;
 export const AreaInputTitle = styled.div`
   display: flex;
-  flex: 1;
   padding-left: 5px;
   padding-right: 5px;
   flex-direction: column;
+  @media (min-width: 300px) {
+    flex: 1;
+  }
+  @media (min-width: 400px) {
+    flex: 1;
+  }
+  @media (min-width: 800px) {
+    flex: ${({ flex = 1 }) => flex};
+  }
+  @media (min-width: 1200px) {
+    flex: ${({ flex = 1 }) => flex};
+  }
 `;
 export const AreaInputRemove = styled.div`
   display: flex;
@@ -96,6 +107,7 @@ export const AreaIconRemove = styled.div`
   justify-content: center;
   align-items: center;
   height: 40px;
+
   flex: 1;
   :hover {
     cursor: pointer;
@@ -103,6 +115,18 @@ export const AreaIconRemove = styled.div`
   }
   :active {
     background-color: ${colors.boxShadownTransparent};
+  }
+  @media (min-width: 300px) {
+    margin-top: 5px;
+  }
+  @media (min-width: 400px) {
+    margin-top: 5px;
+  }
+  @media (min-width: 800px) {
+    margin-top: 0px;
+  }
+  @media (min-width: 1200px) {
+    margin-top: 0px;
   }
 `;
 export const TitleInput = styled.h3`
@@ -113,6 +137,7 @@ export const TitleInput = styled.h3`
 `;
 export const AreaInputsMultiples = styled.div`
   border: solid;
+  border-color: ${colors.dark};
   margin-top: 15px;
   padding: 5px;
   border-radius: 12px;
@@ -147,7 +172,7 @@ export const AreaUnderline = styled.div`
   align-items: center;
   padding-left: 5px;
   padding-right: 5px;
-  margin-top: 3px;
+  margin-top: 8px;
   height: 1px;
 `;
 export const Underline = styled.div`

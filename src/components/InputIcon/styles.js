@@ -1,4 +1,4 @@
-import styled, { injectGlobal } from 'styled-components';
+import styled from 'styled-components';
 import { FaFonticons } from 'react-icons/fa';
 import InputMask from 'react-input-mask';
 import { colors, metrics } from '../../styles';
@@ -13,7 +13,6 @@ export const AreaInputIcon = styled.div`
 export const AreaInput = styled.div`
   display: flex;
   flex: 4;
-  width: 80%;
   border-style: solid;
   border-width: 2px 2px 2px 2px;
   border-radius: 4px 0px 0px 4px;
@@ -24,15 +23,13 @@ export const AreaInput = styled.div`
   padding-top: 3px;
 `;
 export const Input = styled.input`
-  flex: 1;
   width: 100%;
   font-size: ${metrics.fontSize + 4}px;
   border-width: 0px;
-  background-color: none;
   padding-left: 5px;
+  background-color: none;
   color: ${colors.pickerFour};
   outline: none;
-
   :focus {
     border-color: none;
   }
@@ -52,7 +49,6 @@ export const Input = styled.input`
   }
 `;
 export const InputFormMask = styled(InputMask)`
-  flex: 1;
   width: 100%;
   font-size: ${metrics.fontSize + 4}px;
   border-width: 0px;
@@ -81,7 +77,6 @@ export const InputFormMask = styled(InputMask)`
 export const AreaIcon = styled.button`
   display: flex;
   flex: 1;
-  width: 20%;
   justify-content: center;
   align-items: center;
   background-color: transparent;

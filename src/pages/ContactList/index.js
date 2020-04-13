@@ -25,12 +25,31 @@ function ContactList() {
   const [inputLastnameError, setInputLastnameError] = useState(null);
   const [inputEmailValue, setInputEmailValue] = useState('');
   const [inputEmailError, setInputEmailError] = useState(null);
-  const [inputPhoneNumberValue, setInputPhoneNumberValue] = useState('');
   const [inputPhoneNumberError, setInputPhoneNumberError] = useState(null);
   const [phoneProperties, setPhoneProperties] = useState([
     {
-      value: '',
-      error: false,
+      numberValue: '',
+      descriptionValue: '',
+      numberError: false,
+      descriptionError: false,
+    },
+  ]);
+  const [addressesProperties, setaddressesProperties] = useState([
+    {
+      numberValue: '',
+      numberError: false,
+      addressValue: '',
+      addressError: false,
+      neighborhoodValue: '',
+      neighborhoodError: false,
+      cityValue: '',
+      cityError: false,
+      stateValue: '',
+      stateError: false,
+      countryValue: '',
+      countryError: false,
+      zipcodeValue: '',
+      zipcodeError: '',
     },
   ]);
   const [inputPhoneDescriptionValue, setInpuPhoneDescriptionValue] = useState(
@@ -69,42 +88,64 @@ function ContactList() {
   function functionAddPhoneNumber(phonesParam) {
     const newNumbers = [...phonesParam];
     newNumbers.push({
-      value: '',
-      error: false,
+      numberValue: '',
+      descriptionValue: '',
+      numberError: false,
+      descriptionError: false,
     });
     setPhoneProperties(newNumbers);
   }
   function functionRemovePhoneNumber(phonesParam) {
     const newNumbers = [...phonesParam];
-    newNumbers.pop();
-    setPhoneProperties(newNumbers);
+    if (newNumbers.length > 1) {
+      newNumbers.pop();
+      setPhoneProperties(newNumbers);
+    }
   }
   function onChangePhoneNumber(valueParam, indexParam, phonesParam) {
-    const newNumbers = phonesParam.map((phoneNumberParam, indexPhoneParam) => {
+    const newNumbers = phonesParam.map((phoneParam, indexPhoneParam) => {
       if (indexParam === indexPhoneParam) {
         return {
-          ...phoneNumberParam,
-          value: valueParam,
+          ...phoneParam,
+          numberValue: valueParam,
         };
       }
-      return phoneNumberParam;
+      return phoneParam;
     });
     setPhoneProperties(newNumbers);
   }
-  function verifyPhoneNumberFunction(phones) {
+  function verifyPhoneNumber(phones) {
     const newPhonesArray = phones.map(phone => {
-      const errorPhone = verifyPhone(phone.value);
+      const errorPhone = verifyPhone(phone.numberValue);
       return {
         ...phone,
-        error: errorPhone,
+        numberError: errorPhone,
       };
     });
     setPhoneProperties(newPhonesArray);
   }
-  // function verifyPhoneDescription(phoneDescriptionParam) {
-  //   // const errorResult = verifyName(nameParam);
-  //   // setInputNameError(errorResult);
-  // }
+  function onChangePhoneDescription(valueParam, indexParam, phonesParam) {
+    const newNumbers = phonesParam.map((phoneParam, indexPhoneParam) => {
+      if (indexParam === indexPhoneParam) {
+        return {
+          ...phoneParam,
+          descriptionValue: valueParam,
+        };
+      }
+      return phoneParam;
+    });
+    setPhoneProperties(newNumbers);
+  }
+  function verifyPhoneDescription(phones) {
+    const newPhonesArray = phones.map(phone => {
+      const errorPhone = verifyName(phone.descriptionValue);
+      return {
+        ...phone,
+        numberError: errorPhone,
+      };
+    });
+    setPhoneProperties(newPhonesArray);
+  }
 
   return (
     <AreaUserList>
@@ -172,8 +213,9 @@ function ContactList() {
           }
           // modal : input :phone number
           titleInputPhoneNumberModal="Número"
-          typeInputPhoneNumberModal="text"
+          typeInputPhoneNumberModal="mask"
           typeInputPhoneNumberFormatModal="text"
+          inputMaskPhoneNumberModal="+99 (999) 9 9999-9999"
           placeholderInputPhoneNumberModal="Digite seu número:"
           disabledInputPhoneNumberModal={loading}
           iconInputPhoneNumberModal={() => <icons.PhoneIcon />}
@@ -181,25 +223,23 @@ function ContactList() {
             onChangePhoneNumber(value, index, phoneProperties)
           }
           functionOnEndingChangePhoneNumberModal={() =>
-            verifyPhoneNumberFunction(phoneProperties)
+            verifyPhoneNumber(phoneProperties)
           }
-          arrayPhonesNumberModal={phoneProperties}
           // modal : input :phone description
-          // titleInputPhoneDescriptionModal="Número"
-          // typeInputPhoneDescriptionModal="text"
-          // typeInputPhoneDescriptionFormatModal="text"
-          // placeholderInputPhoneDescriptionModal="Digite seu telefone:"
-          // disabledInputPhoneDescriptionModal={loading}
-          // iconInputPhoneDescriptionModal={() => <icons.PhoneIcon />}
-          // functionOnChangeInputPhoneDescriptionModal={text =>
-          //   setInpuPhoneDescriptionValue(text)
-          // }
-          // functionOnEndingChangePhoneDescriptionModal={() =>
-          //   verifyMailFunction(inputPhoneDescriptionValue)
-          // }
-          // valueInputPhoneDescriptionModal={inputPhoneDescriptionValue}
-          // errorInputPhoneDescriptionModal={inputPhoneDescriptionError !== null}
-          // modal : input
+          titleInputPhoneDescriptionModal="Descrição"
+          typeInputPhoneDescriptionModal="text"
+          typeInputPhoneDescriptionFormatModal="text"
+          placeholderInputPhoneDescriptionModal="Digite a descrição:"
+          disabledInputPhoneDescriptionModal={loading}
+          iconInputPhoneDescriptionModal={() => <icons.IconInformation />}
+          functionOnChangeInputPhoneDescriptionModal={(value, index) =>
+            onChangePhoneDescription(value, index, phoneProperties)
+          }
+          functionOnEndingChangePhoneDescriptionModal={() =>
+            verifyPhoneDescription(phoneProperties)
+          }
+          arrayPhonesModal={phoneProperties}
+          // fields
         />
       </AreaHeaderTable>
       <AreaBodyTable>

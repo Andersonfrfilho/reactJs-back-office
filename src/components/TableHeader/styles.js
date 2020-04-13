@@ -23,14 +23,6 @@ export const Modal = styled.div`
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   flex: 1;
-  body {
-    font-family: sans-serif;
-  }
-  input {
-    border: 1px solid #999;
-    padding: 0.5rem;
-    width: 300px;
-  }
 `;
 
 export const AreaItensTable = styled.div`
